@@ -133,6 +133,16 @@
             height: 40px;
             width: 150px;
         }
+
+        .searchBtn2 {
+            color: white;
+            background-color: #ea6f21;
+            border: none;
+            border-radius: 12px;
+
+            height: fit-content;
+            width: 150px;
+        }
     </style>
 </head>
 <body>
@@ -175,7 +185,6 @@
                     <div class="input-group mb-3" id="dateInputGroup">
                         <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
                         <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="datepicker" >
-                        
                     </div>
                 </div>
 
@@ -230,30 +239,73 @@
             </div>
         </form>
 
-            <div class="multiCitySection show">
+            <div class="multiCitySection show flex-wrap">
             <br>
                 <div class="left col-12 col-sm-12 col-md-6 col-lg-7">
-                    <div class="one">
-                        <div class="input-group mb-3 flex-row">
-                            <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-map-marker-alt"></i></span>
-                            <select id="airportSelect" onfocus="addAirports(this)" class="form-control col-6" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                                <option value="">Flying From</option>
-                            </select>
+                    
+                    <div class="one d-flex flex-wrap flex-sm-wrap flex-md-nowrap">
+                        <div class="ports col-12 col-sm-12 col-md-7">
+                            <div class="input-group mb-3 flex-row">
+                                <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-map-marker-alt"></i></span>
+                                <select id="airportSelect" onfocus="addAirports(this)" class="form-control col-6" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                    <option value="">Flying From</option>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3 flex-row">
+                                <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-map-marker-alt"></i></span>
+                                <select id="airportSelect" onfocus="addAirports(this)" class="form-control col-6" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                    <option value="">Flying to</option>
+                                </select>
+                            </div>                            
                         </div>
-                    </div>
-                    <div class="two">
-                        <div class="input-group mb-3 flex-row">
-                            <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-map-marker-alt"></i></span>
-                            <select id="airportSelect" onfocus="addAirports(this)" class="form-control col-6" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                                <option value="">Flying From</option>
-                            </select>
+                        <div class="date col-12 col-sm-12 col-md-5">
+                            <div class="input-group mb-3" id="dateInputGroup">
+                                <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
+                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="datepicker" >
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="right">
-                    <select name="seat" id=""></select>
+                <div class="right d-flex flex-wrap justify-content-evenly col-12 col-sm-12 col-md-6 col-lg-5 p3">
+                    <div class="options d-flex flex-column">
+                        <select name="seat" id="">
+                            <option value="Economy">Economy</option>
+                            <option value="Premium Economy">Premium Economy</option>
+                            <option value="Business">Business</option>
+                            <option value="First">First</option>
+                        </select>
+
+                        <label for=""></label>
+                        <input type="number" placeholder="Passengers">
+                    </div>
+
+                    <button class="searchBtn2">
+                        Search <br>
+                        Flights
+                    </button>
                 </div>
             </div>
+            <style>
+                .multiCitySection {
+                    border: 1px solid red;
+                    display: flex;
+                }
+                .left {
+                    border: 1px solid black;
+                }
+                .one {
+                    border: 1px solid orange; margin: 1px;
+                }
+                .ports {
+                    border: 1px solid green; margin: 1px;
+                }
+                .date {
+                    border: 1px solid purple; margin: 1px;
+                }
+                .right {
+                    border: 1px solid turquoise; 
+                }
+            </style>
     </div>
       
     <!-- Top Checkbox manager -->
