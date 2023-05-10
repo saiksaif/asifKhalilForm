@@ -159,8 +159,8 @@ function openMobileSearch(field) {
     <div class="airport-dropdown-mobile">
         <div class="airport-dropdown-mobile-inner">
             <div class="sec1-mob">
-                <button class="cancel-flight-search-btn" onclick="closeMobileFlights(this)">X</button>
                 <input type="text" class="airport-search-m" placeholder="${field.placeholder}" oninput="handleSearchM(event)">
+                <button class="cancel-flight-search-btn" type="none" onclick="closeMobileFlights(this, event)">X</button>
             </div>
             <div class="sec2-mob">
               <!-- Search result list will be added here -->
@@ -186,7 +186,8 @@ function openMobileSearch(field) {
 
 
 
-function closeMobileFlights(button) {
+function closeMobileFlights(button, event) {
+  event.preventDefault();
   const airportDropdownMobile = button.closest(".airport-dropdown-mobile");
   const inputs = document.querySelectorAll("input");
   inputs.forEach((input) => {

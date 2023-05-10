@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flights Form</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.3/css/all.css" integrity="xxxxxxxx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+
+
+    <script>
+        const airportsUrl = 'https://gist.githubusercontent.com/tdreyno/4278655/raw/7b0762c09b519f40397e4c3e100b097d861f5588/airports.json';
+        let airports = [];
+
+        // fetch the airports data and store it in the airports array
+        fetch(airportsUrl)
+        .then(response => response.json())
+        .then(data => {
+            airports = data;
+            console.log('Airports fetched!');
+        })
+        .catch(error => console.error(error));
+
+        function addAirports(select) {
+            // console.log("Focus")
+            // let select = document.querySelector("#airportSelect");
+            airports.forEach(airport => {
+            let option = document.createElement("option");
+            option.value = airport.code;
+            option.text = `${airport.city}, ${airport.country} - ${airport.code}`;
+            select.add(option);
+            });
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: rgba(46, 46, 46, 0.376);
+            outline: none;
+            padding-top: 10px;
+        }
+        .form {
+            background-color: white;
+            margin: 15px auto;
+            padding: 15px 25px;
+
+            border: none;
+            border-radius: 7px;
+            max-width: 1100px;
+        }
+
+
+
+        .section1 {
+            outline: none;
+            padding: 5px 15px;
+        }
+        .section1 label {
+            margin-right: 25px;
+        }
+        .section1 input {
+            transform: scale(1.3);
+            accent-color: black;
+            margin: 0 5px;
+        }
+
+
+        
+        .section2 {
+            margin-right: 15px;
+        }
+        .section2 .input-group {
+            margin: 7px 7px;
+        }
+        .section2 span {
+            height: 50px;
+            background-color: #efefef;
+            border: none;
+        }
+        .section2 input, .section2 select {
+            height: 50px;
+            background-color: #efefef;
+            border: none;
+
+            border-radius: 7px;
+        }
+        .section2 input:focus, .section2 select:focus {
+            background-color: #efefef;
+            border: none;
+            outline: none;
+        }
+        .section2 input:focus, .section2 select:focus {
+            outline: none !important;
+        }
+
+
+
+        .multiCitySection span {
+            height: 50px;
+            background-color: #efefef;
+            border: none;
+        }
+        .multiCitySection select {
+            height: 50px;
+            background-color: #efefef;
+            border: none;
+
+            border-radius: 7px;
+        }
+
+
+
+        .section3 label {
+            margin-right: 25px;
+        }
+        .section3 input {
+            transform: scale(1.3);
+            accent-color: black;
+            margin: 0 5px;
+        }
+        .section3 .searchBtn {
+            color: white;
+            background-color: #ea6f21;
+            border: none;
+            border-radius: 12px;
+
+            height: 40px;
+            width: 150px;
+        }
+
+        .searchBtn2 {
+            color: white;
+            background-color: #ea6f21;
+            border: none;
+            border-radius: 12px;
+
+            height: fit-content;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form col-lg-10 col-md-11 col-sm-11 col-11 shadow">
+        <form action="#">
+
+            <div class="section1 d-flex flex-sm-row flex-column">
+                <label>
+                    <input id="oneWay" type="checkbox" name="trip-type" value="one-way" onchange="uncheckOther(this)" checked>
+                    One Way
+                </label>
+                    
+                <label>
+                    <input id="roundTrip" type="checkbox" name="trip-type" value="round-trip" onchange="uncheckOther(this); checkboxChange()">
+                    Round-Trip
+                </label>
+                    
+                <label>
+                    <input id="multiCity" type="checkbox" name="trip-type" value="multiple-cities" onchange="uncheckOther(this); multiCityFlights()">
+                    Multi-City
+                </label>
+            </div>
+
+            <div class="container show">
+                <div class="section2 d-flex flex-column flex-sm-column flex-md-row">
+                    <div class="input-group mb-3 flex-row">
+                        <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-map-marker-alt"></i></span>
+                        <select id="airportSelect" onfocus="addAirports(this)" class="form-control col-6" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <option value="">Flying From</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-map-marker-alt"></i></span>
+                        <select id="airportSelect" onfocus="addAirports(this)" class="form-control col-6" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            <option value="">Flying to</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group mb-3" id="dateInputGroup">
+                        <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="datepicker" >
+                    </div>
+                </div>
+
+                <div class="section3 d-flex flex-column flex-sm-column flex-md-row justify-content-md-between me-4 ms-1">
+                    <div class="leftAria text-center">
+                        <label>
+                            <input type="checkbox" name="trip-type" value="one-way">
+                            Direct Flights Only
+                        </label> <hr width="160px" style="margin: 10px auto;">
+                    </div> 
+
+                    <div class="rightAria d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
+                        <div class="drops d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
+                            <!-- Dropdown for Total Passengers -->
+                            <div class="passengers"  style="margin: 0 auto;">
+                                <div class="dropdown-input2 mx-3" id="PdropdownInput">
+                                    <i class="far fa-user"></i>
+                                    <button type="button" id="PdropdownButton" class="dropdown-button">1 Passenger</button>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div> <hr width="140px" style="margin: 10px auto;">
+                                <div  class="Pdropdown-menu show shadow" aria-labelledby="PdropdownButton">
+                                    <label class="w-100" for="adult">Adults:
+                                        <input class="float-end" id="adultC" type="number" name="adult" id="" max="2" min="1" value="1" onchange="getTotalPassengers()"></label> <hr>
+
+                                    <label class="w-100" for="adult">Children:
+                                        <input class="float-end" id="childC" type="number" name="child" id="" max="5" min="0" value="0" onchange="getTotalPassengers()"></label> <hr>
+
+                                    <label class="w-100" for="adult">Infants:
+                                        <input class="float-end" id="infantC" type="number" name="infant" id="" max="2" min="0" value="0" onchange="getTotalPassengers()"></label>
+                                </div>
+                            </div>
+
+                            <!-- Dropdown for seat type -->
+                            <div class="custom-dropdown" style="margin: 0 auto;">
+                                <div class="dropdown-input flex-row" id="dropdownInput">
+                                    <i class="far fa-plane"></i>
+                                    <button type="button" id="dropdownButton" class="dropdown-button">Economy</button>
+                                    <i class="fas fa-chevron-down float-end p-2"></i>
+                                </div> <hr width="180px" style="margin: 10px auto;">
+                                <div class="dropdown-menu shadow" aria-labelledby="dropdownButton">
+                                    <div class="dropdown-option" data-value="Economy" selected>Economy</div><hr>
+                                    <div class="dropdown-option" data-value="P. Economy">P. Economy</div><hr>
+                                    <div class="dropdown-option" data-value="Business">Business</div><hr>
+                                    <div class="dropdown-option" data-value="First">First</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="searchBtn my-2 my-sm-2 my-md-0" style="margin: 0 auto;" type="submit">SEARCH</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+            <div class="multiCitySection show flex-wrap">
+            <br>
+                <div class="left col-12 col-sm-12 col-md-6 col-lg-7">
+                    
+                    <div class="one d-flex flex-wrap flex-sm-wrap flex-md-nowrap">
+                        <div class="ports col-12 col-sm-12 col-md-7">
+                            <div class="input-group mb-3 flex-row">
+                                <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-map-marker-alt"></i></span>
+                                <select id="airportSelect" onfocus="addAirports(this)" class="form-control col-6" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                    <option value="">Flying From</option>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3 flex-row">
+                                <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-map-marker-alt"></i></span>
+                                <select id="airportSelect" onfocus="addAirports(this)" class="form-control col-6" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                    <option value="">Flying to</option>
+                                </select>
+                            </div>                            
+                        </div>
+                        <div class="date col-12 col-sm-12 col-md-5">
+                            <div class="input-group mb-3" id="dateInputGroup">
+                                <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
+                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="datepicker" >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right d-flex flex-wrap justify-content-evenly col-12 col-sm-12 col-md-6 col-lg-5 p3">
+                    <div class="options d-flex flex-column">
+                        <select name="seat" id="">
+                            <option value="Economy">Economy</option>
+                            <option value="P. Economy">Premium Economy</option>
+                            <option value="Business">Business</option>
+                            <option value="First">First</option>
+                        </select>
+
+                        <label for=""></label>
+                        <input type="number" placeholder="Passengers">
+                    </div>
+
+                    <button class="searchBtn2">
+                        Search <br>
+                        Flights
+                    </button>
+                </div>
+            </div>
+            <style>
+                .multiCitySection {
+                    border: 1px solid red;
+                    display: flex;
+                }
+                .left {
+                    border: 1px solid black;
+                }
+                .one {
+                    border: 1px solid orange; margin: 1px;
+                }
+                .ports {
+                    border: 1px solid green; margin: 1px;
+                }
+                .date {
+                    border: 1px solid purple; margin: 1px;
+                }
+                .right {
+                    border: 1px solid turquoise; 
+                }
+            </style>
+    </div>
+      
+    <!-- Top Checkbox manager -->
+    <script>
+        function uncheckOther(checkedBox) {
+            const checkboxes = document.getElementsByName('trip-type');
+            for (let i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i] !== checkedBox) {
+                    checkboxes[i].checked = false;
+                    if (checkboxes[i].id == "roundTrip") {
+                        checkboxChange()
+                    }
+                    if (checkboxes[i].id == "multiCity") {
+                        showOthers()
+                    }
+                } else if (!checkedBox.checked) {
+                    checkedBox.checked = true;
+                    
+                    if (checkedBox.id == "multiCity") {
+                        hideOthers()
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Date Picker -->
+    <script>
+        var picker = new Pikaday({ field: document.getElementById('datepicker'), format: 'D MMM YYYY', minDate: new Date() });
+        var picker2 = new Pikaday({ field: document.getElementById('datepicker2'), format: 'D MMM YYYY', minDate: new Date() });
+
+        const dateInput = document.querySelector('#datepicker');
+        const today = new Date();
+        const day = today.getDate().toString().padStart(2, '0');
+        const month = (today.getMonth() + 1).toString().padStart(2, '0');
+        const year = today.getFullYear().toString();
+        const todayFormatted = `${day}-${month}-${year}`;
+        dateInput.placeholder = todayFormatted;
+
+        function checkboxChange() {
+            const checkboxes2 = document.querySelector('#roundTrip');
+
+            if (checkboxes2.checked) {
+                const areaOfInputs = document.querySelector('#dateInputGroup');
+                areaOfInputs.innerHTML += `
+                <div style="color: transparent;">__</div>
+                    <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="datepicker2" >
+                `;
+
+
+                var picker = new Pikaday({ field: document.getElementById('datepicker'), format: 'D MMM YYYY', minDate: new Date() });
+                var picker2 = new Pikaday({ field: document.getElementById('datepicker2'), format: 'D MMM YYYY', minDate: new Date() });
+                const dateInput2 = document.querySelector('#datepicker2');
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                const day2 = tomorrow.getDate().toString().padStart(2, '0');
+                const month2 = (tomorrow.getMonth() + 1).toString().padStart(2, '0');
+                const year2 = tomorrow.getFullYear().toString();
+                const tomorrowFormatted = `${day2}-${month2}-${year2}`;
+                dateInput2.placeholder = tomorrowFormatted;
+            } else if (!checkboxes2.checked) {
+                // alert("Unchecked")
+                const areaOfInputs = document.querySelector('#dateInputGroup');
+                areaOfInputs.innerHTML = `
+                <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="datepicker" >
+                `;
+
+                var picker = new Pikaday({ field: document.getElementById('datepicker'), format: 'D MMM YYYY', minDate: new Date() });
+                const dateInput3 = document.querySelector('#datepicker');
+                const today3 = new Date();
+                const day3 = today3.getDate().toString().padStart(2, '0');
+                const month3 = (today3.getMonth() + 1).toString().padStart(2, '0');
+                const year3 = today3.getFullYear().toString();
+                const todayFormatted3 = `${day3}-${month3}-${year3}`;
+                dateInput3.placeholder = todayFormatted3;
+            }
+
+        }
+
+    </script>
+
+    <!-- Stylish Select option for seats -->
+    <script>
+        const dropdownInput = document.querySelector('#dropdownInput');
+        const dropdownButton = document.querySelector('#dropdownButton');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+
+        // Set initial text content and value of dropdown button to selected option
+        const selectedOption = document.querySelector('.dropdown-option[selected]');
+        dropdownButton.textContent = selectedOption.textContent;
+        dropdownButton.value = selectedOption.dataset.value;
+
+        dropdownInput.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('show');
+        });
+
+        dropdownMenu.addEventListener('mouseleave', () => {
+            dropdownMenu.classList.toggle('show');
+        });
+
+        document.querySelectorAll('.dropdown-option').forEach(option => {
+        option.addEventListener('click', () => {
+            const value = option.dataset.value;
+            dropdownButton.textContent = option.textContent;
+            dropdownButton.value = value;
+            dropdownMenu.classList.remove('show');
+        });
+        });
+    </script>
+
+    <!-- Script for Number of passengers -->
+    <script>
+        const dropdownInput2 = document.querySelector('#PdropdownInput');
+        const dropdownButton2 = document.querySelector('#PdropdownButton');
+        const dropdownMenu2 = document.querySelector('.Pdropdown-menu');
+
+        dropdownInput2.addEventListener('click', () => {
+            dropdownMenu2.classList.toggle('show');
+        });
+
+        dropdownMenu2.addEventListener('mouseleave', () => {
+            dropdownMenu2.classList.toggle('show');
+        });
+
+        function getTotalPassengers() {
+            const adultsN = document.querySelector('#adultC');
+            const childsN = document.querySelector('#childC');
+            const infantsN = document.querySelector('#infantC');
+
+            var totalPass = parseInt(adultsN.value) + parseInt(childsN.value) + parseInt(infantsN.value);
+
+            console.log(totalPass);
+            if (totalPass > 1) {
+                dropdownButton2.innerHTML = totalPass + " Passengers";
+            } else {
+                dropdownButton2.innerHTML = "1 Passenger";
+            }
+        }
+    </script>
+
+    <!-- Script for Multi City flights -->
+    <script>
+        const sections = document.querySelector(".container");
+        sections.classList.remove("show");
+
+        function multiCityFlights() {
+            const multiCitySection = document.querySelector(".multiCitySection");
+
+            sections.classList.toggle('show');
+            multiCitySection.classList.toggle('show');
+        }
+        function hideOthers() {
+            const multiCitySection = document.querySelector(".multiCitySection");
+
+            sections.classList.add("show");
+            multiCitySection.classList.remove("show");
+        }
+        function showOthers() {
+            const multiCitySection = document.querySelector(".multiCitySection");
+
+            sections.classList.remove("show");
+            multiCitySection.classList.add("show");
+        }
+    </script>
+
+    <style>
+        .show {
+            display: none;
+        }
+        .Pdropdown-menu {
+            position: absolute;
+            background-color: white;
+            border-radius: 7px;
+
+            height: fit-content;
+            width: fit-content;
+            z-index: 1;
+
+            padding: 10px;
+
+            border: 1px solid rgba(128, 128, 128, 0.3);
+        }
+        .Pdropdown-menu input {
+            transform: scale(1);
+            width: 50px;
+        }
+
+        .custom-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-input {
+            cursor: pointer;
+            width: 200px;
+        }
+        .dropdown-input2 {
+            cursor: pointer;
+            width: fit-content;
+        }
+        .dropdown-button {
+            border: none;
+            background: transparent;
+        }
+        .dropdown-menu {
+            padding: 10px;
+            border: 1px solid rgba(128, 128, 128, 0.3); 
+        }
+        .passengers hr {
+            margin: 5px 0;
+            padding: 0;
+            height: 2px;
+        }
+        .dropdown-menu hr {
+            margin: 5px 0;
+            padding: 0;
+            height: 2px;
+        }
+        
+        .dropdown-option {
+            cursor: pointer;
+        }
+
+        input[type="number"] {
+            border: none;
+            background-color: transparent;
+        }
+        /* increase size of up and down arrows */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            height: 2em;
+            width: 2em;
+        }
+        input:focus {
+            outline: none;
+        }
+    </style>  
+
+</body>
+</html>
