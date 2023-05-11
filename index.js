@@ -35,45 +35,6 @@ function handleSearch(event) {
     dropdown.appendChild(message);
   }
 }
-// ///////////////////////////  FLIGHTS SEARCH MOBILE   ///////////////////////////////////
-// const searchBarsM = document.querySelectorAll(".airport-search-m");
-// searchBarsM.forEach(searchBarM => {
-//   searchBarM.addEventListener("input", handleSearchM);
-//   // console.log("Handleing");
-// });
-
-// function handleSearchM(event) {
-//   // console.log("Handling");
-//   const searchTermM = event.target.value.toLowerCase();
-//   const matchingAirportsM = airports.filter(
-//     airport =>
-//       airport.code.toLowerCase().startsWith(searchTermM) ||
-//       airport.city.toLowerCase().startsWith(searchTermM) ||
-//       airport.country.toLowerCase().startsWith(searchTermM)
-//   );
-//   const dropdownM = event.target.closest(".sec2-mob");
-//   dropdownM.innerHTML = "";
-//   if (matchingAirportsM.length > 0) {
-//     const listM = document.createElement("ul");
-//     listM.classList.add("airport-list-m");
-//     matchingAirportsM.forEach(airport => {
-//       const listItemM = document.createElement("li");
-//       listItemM.classList.add("airport-option-m");
-//       listItemM.innerText = `${airport.code} - ${airport.city}, ${airport.country}`;
-//       listItemM.addEventListener("click", () => {
-//         event.target.value = airport.code;
-//         dropdownM.innerHTML = "";
-//       });
-//       listM.appendChild(listItemM);
-//     });
-//     dropdownM.appendChild(listM);
-//   } else {
-//     const message = document.createElement("div");
-//     message.innerText = "No matching airports found.";
-//     dropdownM.appendChild(message);
-//   }
-// }
-
 
 // Close dropdowns when user clicks outside of them
 document.addEventListener("click", event => {
@@ -155,6 +116,7 @@ function handleSearchM(event) {
 function openMobileSearch(field) {
   if (window.innerWidth > window.innerHeight) {return;}
 
+  field.blur();
   const mobileView = `
     <div class="airport-dropdown-mobile">
         <div class="airport-dropdown-mobile-inner">
@@ -168,23 +130,19 @@ function openMobileSearch(field) {
         </div>
     </div>
   `;
-
   field.insertAdjacentHTML('afterend', mobileView);
-  
   // Add class to show the black background with fade in effect
   setTimeout(() => {
     document.querySelector('.airport-dropdown-mobile').classList.add('showUp1');
   }, 10);
-  
   // Add class to show the inner container with slide up effect
   setTimeout(() => {
     document.querySelector('.airport-dropdown-mobile-inner').classList.add('showUp');
   }, 500);
+  const inputField = document.querySelector(".airport-search-m");
+  inputField.focus();
+  console.log(inputField)
 }
-
-
-
-
 
 function closeMobileFlights(button, event) {
   event.preventDefault();
