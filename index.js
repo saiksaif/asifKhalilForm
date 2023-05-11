@@ -1,5 +1,28 @@
-// ////////////////////////////////////     Collective
+// ////////////////////////////////////     SWITCHER
 
+const switch1 = document.querySelector("#oneWay")
+const switch2 = document.querySelector("#roundTrip")
+const switch3 = document.querySelector("#multiCity")
+document.querySelector("#form1").classList.remove("show");
+
+function switchingP() {
+  if (switch1.checked) {
+    // console.log("1")
+    document.querySelector("#form1").classList.remove("show");
+    document.querySelector("#form2").classList.add("show");
+    document.querySelector("#form3").classList.add("show");
+  } else if (switch2.checked) {
+    // console.log("2")
+    document.querySelector("#form1").classList.add("show");
+    document.querySelector("#form2").classList.remove("show");
+    document.querySelector("#form3").classList.add("show");
+  } else if (switch3.checked) {
+    // console.log("3")
+    document.querySelector("#form1").classList.add("show");
+    document.querySelector("#form2").classList.add("show");
+    document.querySelector("#form3").classList.remove("show");
+  }
+}
 // ////////////////////////////////////     EXPERIMENTAL
 
 const searchBars = document.querySelectorAll(".airport-search"); 

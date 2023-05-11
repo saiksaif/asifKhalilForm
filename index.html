@@ -21,7 +21,7 @@
         let airports = [];
 
         // fetch the airports data and store it in the airports array
-        fetch(airportsUrl)
+        fetch(airportsUrl) 
         .then(response => response.json())
         .then(data => {
             airports = data;
@@ -178,7 +178,7 @@
         }
 
         .show {
-            display: none;
+            display: none !important;
         }
 
         .airport-dropdown-mobile {
@@ -225,9 +225,6 @@
         }
         /* /////////////    MOBILE SEARCH LIST      ///////////////////// */
         
-        .airport-list-m {
-            /* border: 1px solid purple; */
-        }
         .airport-option-m {
             cursor: pointer;
             /* border: 1px solid blue; */
@@ -255,25 +252,24 @@
 
         <div class="shifter d-flex flex-row">
             <label class="topCheckboxes">
-                <input id="oneWay" type="checkbox" name="trip-type" value="one-way" onchange="uncheckOther(this)" checked>
+                <input id="oneWay" type="checkbox" name="trip-type" value="one-way" onchange="uncheckOther(this); switchingP()" checked>
                 One Way
             </label>
                 
             <label class="topCheckboxes">
-                <input id="roundTrip" type="checkbox" name="trip-type" value="round-trip" onchange="uncheckOther(this); checkboxChange()">
+                <input id="roundTrip" type="checkbox" name="trip-type" value="round-trip" onchange="uncheckOther(this); switchingP()">
                 Round-Trip
             </label>
                 
             <label class="topCheckboxes">
-                <input id="multiCity" type="checkbox" name="trip-type" value="multiple-cities" onchange="uncheckOther(this); multiCityFlights()">
+                <input id="multiCity" type="checkbox" name="trip-type" value="multiple-cities" onchange="uncheckOther(this); switchingP()">
                 Multi-City
             </label>
         </div>
 
         <div class="formsSpace">
             <!-- /////////////////////////////////      FORM 1      //////////////////////////////////// -->
-            <h3>One-Way</h3>
-            <form id="form1" class="bodyForm" action="#">
+            <form id="form1" class="bodyForm show" action="#">
                 <div class="pt11">
 
                     <!-- Airports Input Field -->
@@ -336,11 +332,10 @@
                         </div>
                     </div>
                 </div>
-            </form> <br>
+            </form>
 
             <!-- /////////////////////////////////      FORM 2      //////////////////////////////////// -->
-            <h3>Round-Trip</h3>
-            <form id="form2" class="bodyForm" action="#">
+            <form id="form2" class="bodyForm show" action="#">
                 <div class="pt21">
 
                     <!-- Airports Input Field -->
@@ -391,11 +386,10 @@
                         </div>
                     </div>
                 </div>
-            </form> <br>
+            </form>
 
             <!-- /////////////////////////////////      FORM 3      //////////////////////////////////// -->
-            <h3>Multi-City</h3>
-            <form id="form3" class="bodyForm d-flex flex-column flex-sm-column flex-md-row" action="#">
+            <form id="form3" class="bodyForm d-flex flex-column flex-sm-column flex-md-row show" action="#">
                 <div class="left  col-12 col-md-7 col-lg-7">
                     <div class="pt31">
                         <!-- Airports Input Field -->
@@ -468,21 +462,26 @@
             for (let i = 0; i < checkboxes.length; i++) {
                 if (checkboxes[i] !== checkedBox) {
                     checkboxes[i].checked = false;
-                    if (checkboxes[i].id == "roundTrip") {
-                        checkboxChange()
-                    }
-                    if (checkboxes[i].id == "multiCity") {
-                        showOthers()
-                    }
+                    // if (checkboxes[i].id == "roundTrip") {
+                    //     checkboxChange()
+                    // }
+                    // if (checkboxes[i].id == "multiCity") {
+                        // showOthers()
+                    // }
                 } else if (!checkedBox.checked) {
                     checkedBox.checked = true;
                     
-                    if (checkedBox.id == "multiCity") {
-                        hideOthers()
-                    }
+                    // if (checkedBox.id == "multiCity") {
+                    //     hideOthers()
+                    // }
                 }
             }
         }
+    </script>
+
+    <!-- PAGE SWITCHER -->
+    <script>
+
     </script>
     
     <!-- Date Picker -->
