@@ -1,3 +1,4 @@
+
 // ////////////////////////////////////     SWITCHER
 
 const switch1 = document.querySelector("#oneWay")
@@ -181,14 +182,13 @@ function openMobileSearch(field) {
   // Add class to show the black background with fade in effect
   setTimeout(() => {
     document.querySelector('.airport-dropdown-mobile').classList.add('showUp1');
-  }, 10);
+  }, 0);
   // Add class to show the inner container with slide up effect
   setTimeout(() => {
     document.querySelector('.airport-dropdown-mobile-inner').classList.add('showUp');
-  }, 500);
+  }, 0);
   const inputField = document.querySelector(".airport-search-m");
   inputField.focus();
-  // console.log(inputField)
 }
 
 function closeMobileFlights(button, event) {
@@ -273,3 +273,55 @@ addButton.addEventListener("click", () => {
     newCity.remove();
   });
 });
+
+
+
+// /////////////////////////    DATE MANAGEMENT POPUP   /////////////////////////////
+
+function openMobileDatePick(field) {
+  if (window.innerWidth > window.innerHeight) {return;}
+
+  field.blur();
+  const mobileView = `
+    <div class="date-dropdown-mobile">
+        <div class="date-dropdown-mobile-inner">
+            <div class="sec21-mob">
+                <h4 class="p-2">Choose a Date:</h4>
+                <button class="cancel-date-btn" type="none" onclick="closeMobileDate(this, event)">X</button>
+            </div>
+            <div class="sec22-mob">
+              <input type="text" id="datepickerFlat" placeholder="Select a date">
+            </div>
+        </div>
+    </div>
+  `;
+  // console.log(mobileView)
+  field.insertAdjacentHTML('afterend', mobileView);
+  // Add class to show the black background with fade in effect
+  setTimeout(() => {
+    document.querySelector('.date-dropdown-mobile').classList.add('showUp3');
+  }, 0);
+  // Add class to show the inner container with slide up effect
+  setTimeout(() => {
+    document.querySelector('.date-dropdown-mobile-inner').classList.add('showUp2');
+  }, 0);
+}
+
+function closeMobileDate(closeBtn, event) {
+  event.preventDefault();
+  
+  const dateDropdownMobile = closeBtn.closest(".date-dropdown-mobile");
+  const inputs = document.querySelectorAll("input");
+  inputs.forEach((input) => {
+    input.blur();
+  });
+  
+  // Remove classes to hide the inner container with slide down effect
+  dateDropdownMobile.querySelector('.date-dropdown-mobile-inner').classList.remove('showUp2');
+  
+  // Remove class to hide the black background with fade out effect
+  setTimeout(() => {
+    dateDropdownMobile.classList.remove('show');
+    dateDropdownMobile.remove();
+  }, 500);
+}

@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    
 
     <!-- Script for getting airports -->
     <script>
@@ -244,6 +244,54 @@
             padding: 7px;
         }
 
+
+        
+        /* /////////////    MOBILE DATE PICKER   ///////////////////// */
+
+        .date-dropdown-mobile {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 6;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0);
+            transition: background-color 0.3s, visibility 0s linear 0.3s;
+            visibility: hidden;
+        }
+
+        .date-dropdown-mobile.showUp3 {
+            background-color: rgba(0, 0, 0, 0.322);
+            visibility: visible;
+            transition: background-color 0.3s;
+        }
+
+        .date-dropdown-mobile-inner {
+            margin-top: 15vh;
+            height: 85vh;
+            background-color: white;
+            border-radius: 20px 20px 0px 0px !important;
+            transform: translateY(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .date-dropdown-mobile-inner.showUp2 {
+            transform: translateY(0%);
+            transition: transform 0.3s ease-in-out 0.3s;
+        }
+        .date-dropdown-mobile-inner .sec21-mob {
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+        } .date-dropdown-mobile-inner .sec21-mob .cancel-date-btn {
+            background-color: rgba(255, 0, 0, 0.48);
+            border: none;
+            border-radius: 7px !important;
+            height: 50px;
+            width: 50px;
+            margin-left: 15px;
+        }
+
     </style>
 
 </head>
@@ -288,7 +336,7 @@
                         <!-- DATE Input Field -->
                         <div class="input-group styledInputF" id="dateInputGroup">
                             <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
-                            <input type="text" class="form-control datepicker" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                            <input type="text" class="form-control datepicker datepickerPop" placeholder="Date" onclick="openMobileDatePick(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                         </div>    
                     </div>        
                 </div>
@@ -495,15 +543,29 @@
         const todayFormatted = `${day}-${month}-${year}`;
 
         dateInputs.forEach((dateInput) => {
-            dateInput.placeholder = todayFormatted;
-            pickers.push(new Pikaday({
-                field: dateInput,
-                format: 'D MMM YYYY',
-                minDate: new Date(),
-            }));
+            if (window.innerWidth > window.innerHeight) {
+                // console.log("Check")
+                dateInput.placeholder = todayFormatted;
+                pickers.push(new Pikaday({
+                    field: dateInput,
+                    format: 'D MMM YYYY',
+                    minDate: new Date(),
+                }));
+            }
         });
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        if (window.innerWidth < window.innerHeight) {
+            flatpickr("#datepickerFlat", {
+                theme: "material",
+                minDate: "today",
+                dateFormat: "d-m-Y H:i",
+                inline: true
+            });
+        }
+    </script>
     <script src="./index.js"></script>
 </body>
 </html>
