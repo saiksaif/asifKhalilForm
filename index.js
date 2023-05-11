@@ -2,7 +2,7 @@
 
 // ////////////////////////////////////     EXPERIMENTAL
 
-const searchBars = document.querySelectorAll(".airport-search");
+const searchBars = document.querySelectorAll(".airport-search"); 
 searchBars.forEach(searchBar => {
   searchBar.addEventListener("input", handleSearch);
 });
@@ -77,7 +77,7 @@ function getTotalPassengers() {
 
 // ////////////////////////////////////     SECTION - Mobile Flight Search
 function handleSearchM(event) {
-  console.log("Handling");
+  // console.warn(originalField)
   const searchTermM = event.target.value.toLowerCase();
   const matchingAirportsM = airports.filter(
     airport =>
@@ -86,7 +86,7 @@ function handleSearchM(event) {
       airport.country.toLowerCase().startsWith(searchTermM)
   );
   const dropdownM = event.target.parentNode.nextElementSibling;
-  console.log(dropdownM);
+  // console.log(dropdownM);
   if (dropdownM === null) {
     return;
   }
@@ -101,6 +101,10 @@ function handleSearchM(event) {
       listItemM.addEventListener("click", () => {
         event.target.value = airport.code;
         dropdownM.innerHTML = "";
+        // console.warn(event.target.value)
+        // console.warn(event.target.parentNode.parentNode.parentNode.previousElementSibling)
+        event.target.parentNode.parentNode.parentNode.previousElementSibling.value = event.target.value;
+        closeMobileFlightsFromOption(dropdownM);
       });
       listM.appendChild(listItemM);
     });
@@ -111,7 +115,26 @@ function handleSearchM(event) {
     dropdownM.appendChild(message);
   }
 }
+// ////////////////// Close Window on Choosing Option
+function closeMobileFlightsFromOption(dropdown) {
+  // dropdown in sec2-mob
+  // airportDropdownMobile is airport-dropdown-mobile
+  const airportDropdownMobile = dropdown.closest(".airport-dropdown-mobile");
 
+  const inputs = document.querySelectorAll("input");
+  inputs.forEach((input) => {
+    input.blur();
+  });
+  
+  // Remove classes to hide the inner container with slide down effect
+  airportDropdownMobile.parentNode.classList.remove('showUp');
+  
+  // Remove class to hide the black background with fade out effect
+  setTimeout(() => {
+    airportDropdownMobile.parentNode.classList.remove('show');
+    airportDropdownMobile.remove();
+  }, 500);
+}
 
 function openMobileSearch(field) {
   if (window.innerWidth > window.innerHeight) {return;}
@@ -130,6 +153,7 @@ function openMobileSearch(field) {
         </div>
     </div>
   `;
+  // console.log(mobileView)
   field.insertAdjacentHTML('afterend', mobileView);
   // Add class to show the black background with fade in effect
   setTimeout(() => {
@@ -141,7 +165,7 @@ function openMobileSearch(field) {
   }, 500);
   const inputField = document.querySelector(".airport-search-m");
   inputField.focus();
-  console.log(inputField)
+  // console.log(inputField)
 }
 
 function closeMobileFlights(button, event) {
