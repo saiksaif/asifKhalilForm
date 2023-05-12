@@ -291,7 +291,7 @@ function openMobileDatePick(field) {
                 <button class="cancel-date-btn" type="none" onclick="closeMobileDate(this, event)">X</button>
             </div>
             <div class="sec22-mob">
-              <form action="#" class="row justify-content-around">
+              <form action="mobCalChoosen()" class="row justify-content-around">
                 <div class="col-md-12">
                   <div id="inline_cal" style="width:fit-content; margin: 0 auto"></div>
                 </div>
@@ -311,6 +311,24 @@ function openMobileDatePick(field) {
   setTimeout(() => {
     document.querySelector('.date-dropdown-mobile-inner').classList.add('showUp2');
   }, 0);
+}
+
+function mobCalChoosen() {
+  alert("A Date was selected");
+
+  const inputs = document.querySelectorAll("input");
+  inputs.forEach((input) => {
+    input.blur();
+  });
+  
+  // Remove classes to hide the inner container with slide down effect
+  dateDropdownMobile.querySelector('.date-dropdown-mobile-inner').classList.remove('showUp2');
+  
+  // Remove class to hide the black background with fade out effect
+  setTimeout(() => {
+    dateDropdownMobile.classList.remove('show');
+    dateDropdownMobile.remove();
+  }, 500);
 }
 
 function closeMobileDate(closeBtn, event) {
