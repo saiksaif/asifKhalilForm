@@ -24,6 +24,7 @@ function switchingP() {
     document.querySelector("#form3").classList.remove("show");
   }
 }
+switchingP()
 // ////////////////////////////////////     EXPERIMENTAL
 
 const searchBars = document.querySelectorAll(".airport-search"); 
@@ -290,7 +291,7 @@ function openMobileDatePick(field) {
                 <button class="cancel-date-btn" type="none" onclick="closeMobileDate(this, event)">X</button>
             </div>
             <div class="sec22-mob">
-              <form action="#" class="row">
+              <form action="#" class="row justify-content-around">
                 <div class="col-md-12">
                   <div id="inline_cal"></div>
                 </div>

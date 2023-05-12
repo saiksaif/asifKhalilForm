@@ -292,6 +292,11 @@
             margin-left: 15px;
         }
 
+
+        .show {
+            display: none;
+        }
+
     </style>
 
 </head>
@@ -437,22 +442,22 @@
             </form>
 
             <!-- /////////////////////////////////      FORM 3      //////////////////////////////////// -->
-            <form id="form3" class="bodyForm d-flex flex-column flex-sm-column flex-md-row show" action="#">
-                <div class="left  col-12 col-md-7 col-lg-7">
+            <form id="form3" class="bodyForm flex-column flex-sm-column flex-md-row show" action="#">
+                <div class="left  col-12 col-md-7 col-lg-7 p-0">
                     <div class="pt31">
                         <!-- Airports Input Field -->
-                    <div class="airportInputs d-flex flex-column flex-sm-column flex-md-row">
-                        <div class="input-group styledInputF">
-                            <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-map-marker-alt"></i></span>
-                            <input type="text" class="form-control airport-search" placeholder="Flying from" onclick="openMobileSearch(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-                            <div class="airport-dropdown"></div>
+                        <div class="airportInputs d-flex flex-column flex-sm-column flex-md-row">
+                            <div class="input-group styledInputF">
+                                <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-map-marker-alt"></i></span>
+                                <input type="text" class="form-control airport-search" placeholder="Flying from" onclick="openMobileSearch(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                                <div class="airport-dropdown"></div>
+                            </div>
+                            <div class="input-group styledInputF">
+                                <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-map-marker-alt"></i></span>
+                                <input type="text" class="form-control airport-search" placeholder="Flying to" onclick="openMobileSearch(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                                <div class="airport-dropdown"></div>
+                            </div>
                         </div>
-                        <div class="input-group styledInputF">
-                            <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-map-marker-alt"></i></span>
-                            <input type="text" class="form-control airport-search" placeholder="Flying to" onclick="openMobileSearch(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-                            <div class="airport-dropdown"></div>
-                        </div>
-                    </div>
                         
                         <!-- Date Input Fields -->
                         <div class="input-group styledInputF" id="dateInputGroup">
@@ -555,19 +560,7 @@
         });
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script>
-        if (window.innerWidth < window.innerHeight) {
-            flatpickr("#datepickerFlat", {
-                theme: "material",
-                minDate: "today",
-                dateFormat: "d-m-Y H:i",
-                inline: true
-            });
-        }
-    </script>
     <script src="./index.js"></script>
-
 
 
 
