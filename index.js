@@ -250,7 +250,7 @@ addButton.addEventListener("click", () => {
       <!-- DATE Input Field -->
       <div class="input-group styledInputF" id="dateInputGroup">
           <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
-          <input placeholder="Date" type="text" class="form-control datepicker" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+          <input placeholder="Date" type="text" class="form-control datepicker" onclick="openMobileDatePick(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
       </div>    
       <button type="button" class="removeCity">X</button>
     </div>
