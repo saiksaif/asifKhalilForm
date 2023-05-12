@@ -290,11 +290,16 @@ function openMobileDatePick(field) {
                 <button class="cancel-date-btn" type="none" onclick="closeMobileDate(this, event)">X</button>
             </div>
             <div class="sec22-mob">
-              <input type="text" id="datepickerFlat" placeholder="Select a date">
+              <form action="#" class="row">
+                <div class="col-md-12">
+                  <div id="inline_cal"></div>
+                </div>
+              </form>
             </div>
         </div>
     </div>
   `;
+  romeCalInitializer()
   // console.log(mobileView)
   field.insertAdjacentHTML('afterend', mobileView);
   // Add class to show the black background with fade in effect

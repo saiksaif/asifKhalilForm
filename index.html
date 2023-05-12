@@ -151,8 +151,8 @@
             padding: 0.5rem;
             font-size: 1rem;
             border: 1px solid #ccc;
-            border-radius: 7px   !important;
             margin-bottom: 0.5rem;
+            border-radius: 7px !important;
         }
 
         .airport-dropdown {
@@ -567,5 +567,182 @@
         }
     </script>
     <script src="./index.js"></script>
+
+
+
+
+    <!-- /////////////////////////////////////////////////////////////////////// -->
+    <!-- ///////////////////////    CALANDER AREA   //////////////////////////// -->
+    <!-- /////////////////////////////////////////////////////////////////////// -->
+    <div class="calArea">
+        <!-- Rome CSS -->
+        <style>
+          .rd-container {
+            display: none;
+            /*border: 1px solid #333;*/
+            background-color: #fff;
+            padding: 10px;
+            text-align: center;
+            /* box-shadow: 0 15px 30px 0 rgba(0,0,0,.2); */
+  
+          }
+          .rd-container-attachment {
+            position: absolute;
+          }
+          .rd-month {
+            display: inline-block;
+            margin-right: 25px;
+          }
+          .rd-month:last-child {
+            margin-right: 0;
+          }
+          .rd-back,
+          .rd-next {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+            padding: 0;
+            margin: 0;
+          }
+          .rd-back[disabled],
+          .rd-next[disabled] {
+            cursor: default;
+          }
+          .rd-back {
+            float: left;
+            margin-left: 10px;
+          }
+          .rd-next {
+            float: right;
+            margin-right: 10px;
+          }
+          .rd-back:before {
+            display: block;
+            content: '\2190';
+          }
+          .rd-next:before {
+            display: block;
+            content: '\2192';
+          }
+          .rd-day-body {
+            cursor: pointer;
+            text-align: center;
+            /* new */
+            line-height: 0;
+            width: 50px!important;
+            height: 50px!important;
+          }
+          .rd-day-selected,
+          .rd-time-selected,
+          .rd-time-option:hover {
+            cursor: pointer;
+            background-color: #f67280;
+            color: #fff;
+            /* new */
+            border-radius: 50%;
+          }
+          .rd-day-prev-month,
+          .rd-day-next-month {
+            color: #ccc;
+          }
+          .rd-day-disabled {
+            cursor: default;
+            color: #fcc;
+          }
+          .rd-time {
+            position: relative;
+            display: inline-block;
+            margin-top: 5px;
+            min-width: 80px;
+          }
+          .rd-time-list {
+            display: none;
+            position: absolute;
+            overflow-y: scroll;
+            max-height: 160px;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            color: #333;
+          }
+          .rd-time-selected {
+            padding: 5px;
+          }
+          .rd-time-option {
+            padding: 5px;
+          }
+          .rd-day-concealed {
+            visibility: hidden;
+          }
+  
+          .rd-days {
+            margin-top: 20px;
+          }
+        </style>
+        
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.usebootstrap.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        
+        <!-- Style -->
+        <style>
+          body {
+            font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            background-color: #efefef; }
+  
+          p {
+            color: #b3b3b3;
+            font-weight: 300; }
+  
+          h1, h2, h3, h4, h5, h6,
+          .h1, .h2, .h3, .h4, .h5, .h6 {
+            font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; }
+  
+          a {
+            -webkit-transition: .3s all ease;
+            -o-transition: .3s all ease;
+            transition: .3s all ease; }
+            a, a:hover {
+              text-decoration: none !important; }
+  
+          .content {
+            padding: 7rem 0; }
+  
+          h2 {
+            font-size: 20px; }
+  
+          .form-control:active, .form-control:focus {
+            outline: none;
+            -webkit-box-shadow: none;
+            box-shadow: none; }
+        </style>
+      
+
+        <!-- <form action="#" class="row">
+          <div class="col-md-12">
+            <div id="inline_cal"></div>
+          </div>
+        </form> -->
+        
+  
+        <!-- <script src="js/jquery-3.3.1.min.js"></script> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- <script src="js/popper.min.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/popper.min.js"></script>
+        <!-- <script src="js/bootstrap.min.js"></script> -->
+        <script src="https://cdn.usebootstrap.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <!-- <script src="js/rome.js"></script> -->
+        <script src="https://cdn.tutorialjinni.com/rome/3.0.2/rome.js"></script>
+        <!-- <script src="js/main.js"></script> -->
+        <script>
+            function romeCalInitializer() {
+                $(function() {
+        
+                    rome(inline_cal, { time: false });
+        
+                });
+            }
+        </script>
+      </div>
 </body>
 </html>
