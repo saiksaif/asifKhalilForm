@@ -293,7 +293,7 @@ function openMobileDatePick(field) {
             <div class="sec22-mob">
               <form action="#" class="row justify-content-around">
                 <div class="col-md-12">
-                  <div id="inline_cal"></div>
+                  <div id="inline_cal" style="width:fit-content; margin: 0 auto"></div>
                 </div>
               </form>
             </div>
