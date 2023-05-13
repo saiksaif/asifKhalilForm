@@ -57,15 +57,26 @@
             border-radius: 7px !important;
             max-width: 1100px;
         }
-        .shifter {
-            margin-bottom: 15px;
-        }
+            .shifter {
+                padding: 0 7px;
+                /* margin-bottom: 0px; */
+            }
         .topCheckboxes {
             margin-right: 12px;
         } .topCheckboxes input {
             margin: 0px 3px;
             accent-color: black;
             transform: scale(1.2);
+        }
+        @media (max-width: 468px) {
+            /* CSS styles for smaller devices go here */
+            .topCheckboxes {
+                margin-right: 6px;
+            } .topCheckboxes input {
+                margin: 0px 1px;
+                accent-color: black;
+                transform: scale(1);
+            }
         }
 
         .bodyForm {
