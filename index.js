@@ -121,8 +121,9 @@ function handleSearchM(event) {
     listM.classList.add("airport-list-m");
     matchingAirportsM.forEach(airport => {
       const listItemM = document.createElement("li");
+      // listItemM.parentElement.classList.add("airport-option-parent");
       listItemM.classList.add("airport-option-m");
-      listItemM.innerText = `${airport.code} - ${airport.city}, ${airport.country}`;
+      listItemM.innerHTML = `<strong>${airport.code}</strong>  -  ${airport.city}, ${airport.country}`;
       listItemM.addEventListener("click", () => {
         event.target.value = airport.code;
         dropdownM.innerHTML = "";
