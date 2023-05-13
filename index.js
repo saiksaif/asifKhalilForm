@@ -73,32 +73,32 @@ document.addEventListener("click", event => {
 
 // ////////////////////////////////////     SECTION 1 - One Way
 
-const dropdownInput2 = document.querySelector('#PdropdownInput');
-const dropdownButton2 = document.querySelector('#PdropdownButton');
-const dropdownMenu2 = document.querySelector('.Pdropdown-menu');
+// const dropdownInput2 = document.querySelector('#PdropdownInput');
+// const dropdownButton2 = document.querySelector('#PdropdownButton');
+// const dropdownMenu2 = document.querySelector('.Pdropdown-menu');
 
-dropdownInput2.addEventListener('click', () => {
-    dropdownMenu2.classList.toggle('show');
-});
+// dropdownInput2.addEventListener('click', () => {
+//     dropdownMenu2.classList.toggle('show');
+// });
 
-dropdownMenu2.addEventListener('mouseleave', () => {
-    dropdownMenu2.classList.toggle('show');
-});
+// dropdownMenu2.addEventListener('mouseleave', () => {
+//     dropdownMenu2.classList.toggle('show');
+// });
 
-function getTotalPassengers() {
-    const adultsN = document.querySelector('#adultC');
-    const childsN = document.querySelector('#childC');
-    const infantsN = document.querySelector('#infantC');
+// function getTotalPassengers() {
+//     const adultsN = document.querySelector('#adultC');
+//     const childsN = document.querySelector('#childC');
+//     const infantsN = document.querySelector('#infantC');
 
-    var totalPass = parseInt(adultsN.value) + parseInt(childsN.value) + parseInt(infantsN.value);
+//     var totalPass = parseInt(adultsN.value) + parseInt(childsN.value) + parseInt(infantsN.value);
 
-    console.log(totalPass);
-    if (totalPass > 1) {
-        dropdownButton2.innerHTML = totalPass + " Passengers";
-    } else {
-        dropdownButton2.innerHTML = "1 Passenger";
-    }
-}
+//     console.log(totalPass);
+//     if (totalPass > 1) {
+//         dropdownButton2.innerHTML = totalPass + " Passengers";
+//     } else {
+//         dropdownButton2.innerHTML = "1 Passenger";
+//     }
+// }
 
 // ////////////////////////////////////     SECTION - Mobile Flight Search
 function handleSearchM(event) {
@@ -350,4 +350,204 @@ function closeMobileDate(closeBtn, event) {
     dateDropdownMobile.classList.remove('show');
     dateDropdownMobile.remove();
   }, 500);
+}
+
+// /////////////////////////    SEATS MANAGEMENT POPUP   /////////////////////////////
+
+function openMobileSeatsManager(field) {
+  if (window.innerWidth > window.innerHeight) {return;}
+
+  field.blur();
+  const mobileView = `
+    <div class="seats-dropdown-mobile">
+        <div class="seats-dropdown-mobile-inner">
+            <div class="sec21-mob">
+                <h4 class="p-2">Choose Seats:</h4>
+                <button class="cancel-seats-btn" type="none" onclick="closeMobileSeats(this, event)">X</button>
+            </div>
+            <div class="sec22-mob">
+            </div>
+        </div>
+    </div>
+  `;
+  // romeCalInitializer()
+  
+  field.insertAdjacentHTML('afterend', mobileView);
+  
+  setTimeout(() => {
+    document.querySelector('.seats-dropdown-mobile').classList.add('showUp5');
+  }, 0);
+  
+  setTimeout(() => {
+    document.querySelector('.seats-dropdown-mobile-inner').classList.add('showUp4');
+  }, 0);
+}
+
+// Function for assigning chosen date to closest input field
+
+function mobSeatsChoosen(date) {
+  const inputs = document.querySelectorAll("input");
+  inputs.forEach((input) => {
+    input.blur();
+  });
+  
+  const dateDropdownMobile = document.querySelector(".cancel-seats-btn").closest(".seats-dropdown-mobile");
+  dateDropdownMobile.querySelector('.seats-dropdown-mobile-inner').classList.remove('showUp4');
+  
+  setTimeout(() => {
+    dateDropdownMobile.classList.remove('show');
+    dateDropdownMobile.remove();
+  }, 500);
+  
+  const dateField = document.querySelector(".seats-dropdown-mobile").previousElementSibling;
+  dateField.value = date;
+  dateField.blur();
+}
+
+// Function for the close button in date popup
+function closeMobileSeats(closeBtn, event) {
+  event.preventDefault();
+  
+  const dateDropdownMobile = closeBtn.closest(".seats-dropdown-mobile");
+  const inputs = document.querySelectorAll("input");
+  inputs.forEach((input) => {
+    input.blur();
+  });
+    
+  dateDropdownMobile.querySelector('.seats-dropdown-mobile-inner').classList.remove('showUp4');
+  
+  setTimeout(() => {
+    dateDropdownMobile.classList.remove('show');
+    dateDropdownMobile.remove();
+  }, 500);
+}
+
+// ////////////////    SEATS MANAGEMENT POPUP DESKTOP   /////////////////////////////
+
+function openSeatsManager(field) {
+  if (window.innerWidth < window.innerHeight) {return;}
+
+  const seatsView = `
+      <div class="seats-dropdown-desktop shadow" onmouseleave="mouseleaveSeats(this)">
+        <div class="d-flex justify-content-between m-1">
+            <label for="adults">
+                Adults:
+            </label>
+            <div class="numberControls d-flex">
+                <button onclick="passengerInc(event, 6)">+</button>
+                <p class="passengerThis">1</p>
+                <button onclick="passengerDec(event, 1)">-</button>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between m-1">
+            <label for="adults">
+                Children:
+            </label>
+            <div class="numberControls d-flex">
+                <button onclick="passengerInc(event, 5)">+</button>
+                <p class="passengerThis">0</p>
+                <button onclick="passengerDec(event, 0)">-</button>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between m-1">
+            <label for="adults">
+                Infants:
+            </label>
+            <div class="numberControls d-flex">
+                <button onclick="passengerInc(event, 2)">+</button>
+                <p class="passengerThis">0</p>
+                <button onclick="passengerDec(event, 0)">-</button>
+            </div>
+        </div>
+  `;
+  // romeCalInitializer()
+  
+  field.insertAdjacentHTML('afterend', seatsView);
+
+  console.log("Opening on desktop");
+}
+
+// ////////////////    SEATS NUMBER MANAGEMENT   /////////////////////////////
+
+function passengerInc(event, max) {
+  event.preventDefault();
+  const currentP = event.target.nextElementSibling;
+ 
+  if (parseInt(currentP.innerHTML) < max) {
+    currentP.innerText = parseInt(currentP.innerHTML) + 1;
+  }
+
+  // let originalF = currentP.parentNode.parentNode.parentNode.previousElementSibling.childNodes[1].childNodes[1].nextElementSibling.childNodes[0];
+  // originalF.innerText = currentP.innerText;
+}
+function passengerDec(event, min) {
+  event.preventDefault();
+  const currentP = event.target.previousElementSibling;
+
+  if (parseInt(currentP.innerHTML) > min) {
+    currentP.innerText = parseInt(currentP.innerHTML) - 1;
+  }
+}
+function mouseleaveSeats(element) {
+  let originalF = element.previousElementSibling.childNodes[1].childNodes[1].nextElementSibling.childNodes[0];
+
+  var passengerThisElements = element.getElementsByClassName('passengerThis');
+  var sum = 0;
+  for (var i = 0; i < passengerThisElements.length; i++) {
+    sum += parseInt(passengerThisElements[i].textContent);
+  }
+  
+  originalF.innerText = sum;
+  
+  element.remove();
+}
+
+// Close dropdowns when user clicks outside of them
+// document.addEventListener("click", event => {
+//   const dropdowns = document.querySelectorAll(".optionsInputs");
+//   dropdowns.forEach(dropdown => {
+//     if (!dropdown.contains(document.querySelector(".seatsDownContainer"))) {
+//       dropdown.innerHTML = "";
+//     }
+//   });
+// });
+
+function openStyleManager(field) {
+  if (window.innerWidth < window.innerHeight) {return;}
+
+  const stylesView = `
+      <div class="style-dropdown-desktop shadow" onmouseleave="mouseleaveStyle(this)">
+        <div class="d-flex justify-content-around m-1" onclick="selectedSeatStyle(event)">
+          Economy
+        </div>
+        <div class="d-flex justify-content-around m-1" onclick="selectedSeatStyle(event)">
+          Premium Economy
+        </div>
+        <div class="d-flex justify-content-around m-1" onclick="selectedSeatStyle(event)">
+          Business
+        </div>
+        <div class="d-flex justify-content-around m-1" onclick="selectedSeatStyle(event)">
+          First
+        </div>
+  `;
+  // romeCalInitializer()
+  
+  field.insertAdjacentHTML('afterend', stylesView);
+}
+
+// ////////////////    SEATS Style MANAGEMENT   /////////////////////////////
+
+function selectedSeatStyle(event) {
+  event.preventDefault();
+  const currentStyle = event.target.innerText;
+
+  let originalF2 = event.target.parentNode.previousElementSibling.childNodes[1].childNodes[1].nextElementSibling;
+  
+  originalF2.innerHTML = "" + currentStyle;  
+  // console.log(originalF2);
+
+  mouseleaveStyle(event.target.parentNode);
+}
+function mouseleaveStyle(element) {
+  element.remove();
 }

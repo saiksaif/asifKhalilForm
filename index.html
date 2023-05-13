@@ -83,6 +83,18 @@
                 accent-color: black;
             }
         }
+        @media (min-width: 768px) {
+            /* CSS styles for smaller devices go here */
+            #form3 {
+                display: flex;
+                flex-direction: row;
+            }
+            .dropSeatsContain3 {
+                flex-direction: column;
+                height: 150px;
+                /* justify-content: space-around; */
+            }
+        }
 
         .bodyForm {
             margin: 5px 0;
@@ -113,7 +125,7 @@
         #addCity {
             background-color: rgba(0, 255, 17, 0.48);
             border: none;
-            border-radius: 7px !important;
+            border-radius: 25px !important;
             margin: 7px;
             height: 55px;
         }
@@ -324,8 +336,129 @@
             width: 50px;
             margin-left: 15px;
         }
+        
+
+        
+        /* /////////////    MOBILE SEATS PICKER   ///////////////////// */
+
+        .seats-dropdown-mobile {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 6;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0);
+            transition: background-color 0.3s, visibility 0s linear 0.3s;
+            visibility: hidden;
+        }
+
+        .seats-dropdown-mobile.showUp5 {
+            background-color: rgba(0, 0, 0, 0.322);
+            visibility: visible;
+            transition: background-color 0.3s;
+        }
+
+        .seats-dropdown-mobile-inner {
+            margin-top: 15vh;
+            height: 85vh;
+            background-color: white;
+            border-radius: 20px 20px 0px 0px !important;
+            transform: translateY(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .seats-dropdown-mobile-inner.showUp4 {
+            transform: translateY(0%);
+            transition: transform 0.3s ease-in-out 0.3s;
+        }
+        .seats-dropdown-mobile-inner .sec21-mob {
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+        } .seats-dropdown-mobile-inner .sec21-mob .cancel-seats-btn {
+            background-color: rgba(255, 0, 0, 0.48);
+            border: none;
+            border-radius: 7px !important;
+            height: 50px;
+            width: 50px;
+            margin-left: 15px;
+        }
+        /* ///////////////      SEATS DESKTOP       ///////////////////////// */
+        .dropSeatsContain {
+            position: relative;
+        }
+        .seats-dropdown-desktop {
+            position: absolute;
+            z-index: 6;
+            left: 0;
+            background-color: white;
+            box-shadow: #333;
+            height: fit-content;
+            width: 200px;
+            border: 1px solid rgba(0, 0, 0, 0.401);
+            border-radius: 7px;
+            padding: 7px;
+        }
+        .style-dropdown-desktop {
+            position: absolute;
+            z-index: 6;
+            right: 0;
+            background-color: white;
+            box-shadow: #333;
+            height: fit-content;
+            width: 200px;
+            border: 1px solid rgba(0, 0, 0, 0.401);
+            border-radius: 7px;
+            padding: 7px;
+        } .style-dropdown-desktop div {
+            background-color: #fff;
+            border-radius: 7px;
+        } .style-dropdown-desktop div:hover {
+            background-color: #3333331e;
+            cursor: pointer;
+        }
+        .numberControls {
+            width: 85px;
+            border: 1px solid #333;
+            border-radius: 7px;
+            height: 30px;
+            justify-content: space-between;
+        } .numberControls button {
+            background-color: transparent;
+            border: none;
+            font-weight: bold;
+            padding: 0 5px;
+            width: 30px;
+        } .numberControls button:hover {
+            background-color: rgba(128, 128, 128, 0.2);
+        } .numberControls p {
+            color: black;
+            cursor: default;
+        }
+
+        .passengers {
+            min-width: fit-content;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        
+        @media (max-width: 468px) {
+            .passengers {
+                min-width: 142px;
+                font-size: 0.9rem;
+            }
+        }
 
 
+        #addCity {
+            width: fit-content;
+            padding: 7px 20px;
+            height: fit-content;
+            border-radius: 30px;
+            text-align: center;
+        }
         .show {
             display: none;
         }
@@ -335,7 +468,6 @@
 </head>
 <body>
     <div class="formbody col-lg-10 col-md-11 col-sm-12 col-12 shadow">
-
         <div class="shifter d-flex flex-row">
             <label class="topCheckboxes">
                 <input id="oneWay" type="checkbox" name="trip-type" value="one-way" onchange="uncheckOther(this); switchingP()" checked>
@@ -386,32 +518,21 @@
                     </label>
 
                     <div class="optionsInputs d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
-                        <div class="d-flex justify-content-center p-2">
+                        <div class="dropSeatsContain d-flex justify-content-center p-2">
                             <!-- Passengers Option -->
-                            <div class="passengers col-6">
+                            <div class="passengers col-6 p-0" onclick="openSeatsManager(this); openMobileSeatsManager(this)">
                                 <div class="dropdown-input2 d-flex p-2" id="PdropdownInput">
                                     <i class="far fa-user p-1"></i>
-                                    <span type="button" id="PdropdownButton" class="dropdown-button">1 Passenger</s>
-                                    <i class="fas fa-chevron-down"></i>
-                                </div>
-                                <div class="option-dropdown Pdropdown-menu show shadow" aria-labelledby="PdropdownButton">
-                                    <label class="w-100" for="adult">Adults:
-                                        <input class="float-end" id="adultC" type="number" name="adult" id="" max="2" min="1" value="1" onchange="getTotalPassengers()"></label> <hr>
-
-                                    <label class="w-100" for="adult">Children:
-                                        <input class="float-end" id="childC" type="number" name="child" id="" max="5" min="0" value="0" onchange="getTotalPassengers()"></label> <hr>
-
-                                    <label class="w-100" for="adult">Infants:
-                                        <input class="float-end" id="infantC" type="number" name="infant" id="" max="2" min="0" value="0" onchange="getTotalPassengers()"></label>
+                                    <span type="button" class="dropdown-button"><span class="passCount">1</span> Passenger(s)</span>
                                 </div>
                             </div>
                             <!-- Seat Option -->
-                            <select name="seat" id="" class="col-6">
-                                <option value="Economy">Economy</option>
-                                <option value="Premium Economy">Premium Economy</option>
-                                <option value="Business">Business</option>
-                                <option value="First">First</option>
-                            </select>
+                            <div class="passengers col-6 p-0" onclick="openStyleManager(this); openMobileSeatsManager(this)">
+                                <div class="dropdown-input2 d-flex p-2" id="PdropdownInput">
+                                    <i class="far fa-plane p-1"></i>
+                                    <span type="button" class="dropdown-button">Economy</span>
+                                </div>
+                            </div>
                         </div>
                         <div>
                             <button class="submissionBtn" type="submit">SEARCH</button>
@@ -452,20 +573,27 @@
                 </div>
 
                 <div class="pt12 d-flex justify-content-between flex-column flex-sm-column flex-md-row">
-                    <label class="directFl p-2" for="direct">
+                    <label class="directFl" for="direct">
                         <input type="checkbox" name="direct" id="">
                         Direct Flight
                     </label>
 
                     <div class="optionsInputs d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
-                        <div class="d-flex justify-content-center p-2">
-                            <input type="number" placeholder="Passengers" class="col-6">
-                            <select name="seat" id="" class="col-6">
-                                <option value="Economy">Economy</option>
-                                <option value="Premium Economy">Premium Economy</option>
-                                <option value="Business">Business</option>
-                                <option value="First">First</option>
-                            </select>
+                        <div class="dropSeatsContain d-flex justify-content-center p-2">
+                            <!-- Passengers Option -->
+                            <div class="passengers col-6 p-0" onclick="openSeatsManager(this); openMobileSeatsManager(this)">
+                                <div class="dropdown-input2 d-flex p-2" id="PdropdownInput">
+                                    <i class="far fa-user p-1"></i>
+                                    <span type="button" class="dropdown-button"><span class="passCount">1</span> Passenger(s)</span>
+                                </div>
+                            </div>
+                            <!-- Seat Option -->
+                            <div class="passengers col-6 p-0" onclick="openStyleManager(this); openMobileSeatsManager(this)">
+                                <div class="dropdown-input2 d-flex p-2" id="PdropdownInput">
+                                    <i class="far fa-plane p-1"></i>
+                                    <span type="button" class="dropdown-button">Economy</span>
+                                </div>
+                            </div>
                         </div>
                         <div>
                             <button class="submissionBtn" type="submit">SEARCH</button>
@@ -522,19 +650,28 @@
                     <div class="pt33">
                         <!-- Placeholder div for adding and removing input fields -->
                     </div>
-                    <button id="addCity" type="button">+ Add city</button>
+                    <button id="addCity" type="button">+ Add city +</button>
                 </div>
-                <div class="right d-flex">
-                    <div class="d-flex flex-column">
-                        <input type="number" placeholder="Passengers">
-                        <select name="seat" id="">
-                            <option value="Economy">Economy</option>
-                            <option value="Premium Economy">Premium Economy</option>
-                            <option value="Business">Business</option>
-                            <option value="First">First</option>
-                        </select>
+                <div class="right optionsInputs d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
+                    <div class="dropSeatsContain dropSeatsContain3 d-flex justify-content-center p-2">
+                        <!-- Passengers Option -->
+                        <div class="passengers col-6 p-0" onclick="openSeatsManager(this); openMobileSeatsManager(this)">
+                            <div class="dropdown-input2 d-flex p-2" id="PdropdownInput">
+                                <i class="far fa-user p-1"></i>
+                                <span type="button" class="dropdown-button"><span class="passCount">1</span> Passenger(s)</span>
+                            </div>
+                        </div>
+                        <!-- Seat Option -->
+                        <div class="passengers col-6 p-0" onclick="openStyleManager(this); openMobileSeatsManager(this)">
+                            <div class="dropdown-input2 d-flex p-2" id="PdropdownInput">
+                                <i class="far fa-plane p-1"></i>
+                                <span type="button" class="dropdown-button">Economy</span>
+                            </div>
+                        </div>
                     </div>
-                    <button class="submissionBtn" type="submit">SEARCH</button>
+                    <div>
+                        <button class="submissionBtn" type="submit">SEARCH</button>
+                    </div>
                 </div>
             </form>
         </div>
