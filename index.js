@@ -365,7 +365,54 @@ function openMobileSeatsManager(field) {
                 <h4 class="p-2">Choose Seats:</h4>
                 <button class="cancel-seats-btn" type="none" onclick="closeMobileSeats(this, event)">X</button>
             </div>
-            <div class="sec22-mob">
+            <div class="sec22-mob-3">
+            <h4>Passengers:</h4>
+              <div class="d-flex justify-content-between m-1">
+                  <label for="adults">
+                      Adults:
+                  </label>
+                  <div class="numberControls d-flex">
+                      <button onclick="passengerInc(event, 6)">+</button>
+                      <p class="passengerThis">1</p>
+                      <button onclick="passengerDec(event, 1)">-</button>
+                  </div>
+              </div>
+              <div class="d-flex justify-content-between m-1">
+                  <label for="adults">
+                      Children:
+                  </label>
+                  <div class="numberControls d-flex">
+                      <button onclick="passengerInc(event, 5)">+</button>
+                      <p class="passengerThis">0</p>
+                      <button onclick="passengerDec(event, 0)">-</button>
+                  </div>
+              </div>
+              <div class="d-flex justify-content-between m-1">
+                  <label for="adults">
+                      Infants:
+                  </label>
+                  <div class="numberControls d-flex">
+                      <button onclick="passengerInc(event, 2)">+</button>
+                      <p class="passengerThis">0</p>
+                      <button onclick="passengerDec(event, 0)">-</button>
+                  </div>
+              </div>
+            </div>
+            <h4 style="margin: 15px">Seats:</h4>
+            <div class="popupSeatOptions">
+              <div class="d-flex justify-content-around m-1" onclick="">
+              <input type="checkbox" name="" id="">
+                Economy
+              </div>
+              <div class="d-flex justify-content-around m-1" onclick="">
+                Premium Economy
+              </div>
+              <div class="d-flex justify-content-around m-1" onclick="">
+                Business
+              </div>
+              <div class="d-flex justify-content-around m-1" onclick="">
+                First
+              </div>
             </div>
         </div>
     </div>
@@ -459,6 +506,7 @@ function openSeatsManager(field) {
                 <button onclick="passengerDec(event, 0)">-</button>
             </div>
         </div>
+      </div>
   `;
   // romeCalInitializer()
   
@@ -529,6 +577,7 @@ function openStyleManager(field) {
         <div class="d-flex justify-content-around m-1" onclick="selectedSeatStyle(event)">
           First
         </div>
+      </div>
   `;
   // romeCalInitializer()
   
