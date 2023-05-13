@@ -70,13 +70,17 @@
         }
         @media (max-width: 468px) {
             /* CSS styles for smaller devices go here */
+            label {
+                font-size: small;
+            }
+            input[type="checkbox"] {
+                transform: scale(1) !important;
+            }
             .topCheckboxes {
                 margin-right: 6px;
-                font-size: small;
             } .topCheckboxes input {
                 margin: 0px 1px;
                 accent-color: black;
-                transform: scale(1);
             }
         }
 
@@ -376,7 +380,7 @@
                 </div>
 
                 <div class="pt12 d-flex justify-content-between flex-column flex-sm-column flex-md-row">
-                    <label class="directFl p-2" for="direct">
+                    <label class="directFl" for="direct">
                         <input type="checkbox" name="direct" id="">
                         Direct Flight
                     </label>
