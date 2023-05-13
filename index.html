@@ -709,30 +709,20 @@
             -webkit-box-shadow: none;
             box-shadow: none; }
         </style>
-      
-
-        <!-- <form action="#" class="row">
-          <div class="col-md-12">
-            <div id="inline_cal"></div>
-          </div>
-        </form> -->
         
-  
-        <!-- <script src="js/jquery-3.3.1.min.js"></script> -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <!-- <script src="js/popper.min.js"></script> -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/popper.min.js"></script>
-        <!-- <script src="js/bootstrap.min.js"></script> -->
         <script src="https://cdn.usebootstrap.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-        <!-- <script src="js/rome.js"></script> -->
         <script src="https://cdn.tutorialjinni.com/rome/3.0.2/rome.js"></script>
-        <!-- <script src="js/main.js"></script> -->
         <script>
             function romeCalInitializer() {
                 $(function() {
-        
-                    rome(inline_cal, { time: false });
-        
+                    rome(inline_cal, {
+                        time: false,
+                        inputFormat: "DD MMM, YYYY"
+                    }).on('data', function (value) {
+                        mobCalChoosen(value);
+                    });
                 });
             }
         </script>

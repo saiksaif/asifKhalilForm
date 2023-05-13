@@ -301,36 +301,39 @@ function openMobileDatePick(field) {
     </div>
   `;
   romeCalInitializer()
-  // console.log(mobileView)
+  
   field.insertAdjacentHTML('afterend', mobileView);
-  // Add class to show the black background with fade in effect
+  
   setTimeout(() => {
     document.querySelector('.date-dropdown-mobile').classList.add('showUp3');
   }, 0);
-  // Add class to show the inner container with slide up effect
+  
   setTimeout(() => {
     document.querySelector('.date-dropdown-mobile-inner').classList.add('showUp2');
   }, 0);
 }
 
-function mobCalChoosen() {
-  alert("A Date was selected");
-
+// Function for assigning chosen date to closest input field
+function mobCalChoosen(date) {
   const inputs = document.querySelectorAll("input");
   inputs.forEach((input) => {
     input.blur();
   });
   
-  // Remove classes to hide the inner container with slide down effect
+  const dateDropdownMobile = document.querySelector(".cancel-date-btn").closest(".date-dropdown-mobile");
   dateDropdownMobile.querySelector('.date-dropdown-mobile-inner').classList.remove('showUp2');
   
-  // Remove class to hide the black background with fade out effect
   setTimeout(() => {
     dateDropdownMobile.classList.remove('show');
     dateDropdownMobile.remove();
   }, 500);
+  
+  const dateField = document.querySelector(".date-dropdown-mobile").previousElementSibling;
+  dateField.value = date;
+  dateField.blur();
 }
 
+// Function for the close button in date popup
 function closeMobileDate(closeBtn, event) {
   event.preventDefault();
   
@@ -339,11 +342,9 @@ function closeMobileDate(closeBtn, event) {
   inputs.forEach((input) => {
     input.blur();
   });
-  
-  // Remove classes to hide the inner container with slide down effect
+    
   dateDropdownMobile.querySelector('.date-dropdown-mobile-inner').classList.remove('showUp2');
   
-  // Remove class to hide the black background with fade out effect
   setTimeout(() => {
     dateDropdownMobile.classList.remove('show');
     dateDropdownMobile.remove();
