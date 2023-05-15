@@ -940,10 +940,18 @@
         <script src="https://cdn.usebootstrap.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <script src="https://cdn.tutorialjinni.com/rome/3.0.2/rome.js"></script>
         <script>
+
             function romeCalInitializer() {
+                const yesterday = new Date();
+                yesterday.setDate(yesterday.getDate());
+
+                // Format the date as 'DD MMM, YYYY'
+                const formattedDate = `${yesterday.getDate()} ${yesterday.toLocaleString('default', { month: 'short' })}, ${yesterday.getFullYear()}`;
+
                 $(function() {
                     rome(inline_cal, {
                         time: false,
+                        min: formattedDate,
                         inputFormat: "DD MMM, YYYY"
                     }).on('data', function (value) {
                         mobCalChoosen(value);

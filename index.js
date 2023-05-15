@@ -451,8 +451,8 @@ function openMobileStyleManager(field) {
                     <input type="radio" class="btn-check" name="btnradio" id="Economy" autocomplete="off" checked>
                     <label class="btn btn-outline-dark" for="Economy">Economy</label>
                   
-                    <input type="radio" class="btn-check" name="btnradio" id="Premium-Economy" autocomplete="off">
-                    <label class="btn btn-outline-dark" for="Premium-Economy">Premium Economy</label>
+                    <input type="radio" class="btn-check" name="btnradio" id="Premium Economy" autocomplete="off">
+                    <label class="btn btn-outline-dark" for="Premium Economy">Premium Economy</label>
                   
                     <input type="radio" class="btn-check" name="btnradio" id="Business" autocomplete="off">
                     <label class="btn btn-outline-dark" for="Business">Business</label>
@@ -495,7 +495,7 @@ function closeMobileStyles(closeBtn, event) {
     }
   }
   closeBtn.parentNode.parentNode.parentNode.previousElementSibling.childNodes[1].childNodes[1].nextElementSibling.innerText = checkedRadioButton.id
-  console.log(closeBtn.parentNode.parentNode.parentNode.previousElementSibling.childNodes[1].childNodes[1].nextElementSibling.innerText)
+  // console.log(closeBtn.parentNode.parentNode.parentNode.previousElementSibling.childNodes[1].childNodes[1].nextElementSibling.innerText)
   
   const dateDropdownMobile = closeBtn.closest(".styles-dropdown-mobile");
   const inputs = document.querySelectorAll("input");
@@ -556,7 +556,7 @@ function openSeatsManager(field) {
   
   field.insertAdjacentHTML('afterend', seatsView);
 
-  console.log("Opening on desktop");
+  // console.log("Opening on desktop");
 }
 
 // ////////////////    SEATS NUMBER MANAGEMENT   /////////////////////////////
