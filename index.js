@@ -444,6 +444,16 @@ function mobSeatsChoosen(date) {
 function closeMobileSeats(closeBtn, event) {
   event.preventDefault();
 
+  // Calculate sum of passengers and then write into field
+  const passengerElements = document.querySelectorAll('.passengerThis'); 
+  let sum = 0;
+  for (const element of passengerElements) {
+    const number = parseInt(element.textContent); 
+    sum += number; 
+  }
+  // Write sum into the original field
+  closeBtn.parentNode.parentNode.parentNode.previousElementSibling.childNodes[1].childNodes[1].nextElementSibling.childNodes[0].innerText = sum;
+
   const dateDropdownMobile = closeBtn.closest(".seats-dropdown-mobile");
   const inputs = document.querySelectorAll("input");
   inputs.forEach((input) => {
