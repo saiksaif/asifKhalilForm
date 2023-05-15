@@ -400,18 +400,20 @@ function openMobileSeatsManager(field) {
             </div>
             <h4 style="margin: 15px">Seats:</h4>
             <div class="popupSeatOptions">
-              <div class="d-flex justify-content-around m-1" onclick="">
-              <input type="checkbox" name="" id="">
-                Economy
-              </div>
-              <div class="d-flex justify-content-around m-1" onclick="">
-                Premium Economy
-              </div>
-              <div class="d-flex justify-content-around m-1" onclick="">
-                Business
-              </div>
-              <div class="d-flex justify-content-around m-1" onclick="">
-                First
+              <div class="justify-content-around m-1" onclick="">
+                <div class="btn-group-vertical w-100" role="group" aria-label="Basic radio toggle button group">
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                  <label class="btn btn-outline-dark" for="btnradio1">Economy</label>
+                
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                  <label class="btn btn-outline-dark" for="btnradio2">Premium Economy</label>
+                
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                  <label class="btn btn-outline-dark" for="btnradio3">Business</label>
+                
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+                  <label class="btn btn-outline-dark" for="btnradio4">First</label>
+                </div>
               </div>
             </div>
         </div>
