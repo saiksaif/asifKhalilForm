@@ -384,6 +384,52 @@
             width: 50px;
             margin-left: 15px;
         }
+
+        /* /////////////    MOBILE STYLES PICKER   ///////////////////// */
+
+        .styles-dropdown-mobile {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 6;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0);
+            transition: background-color 0.3s, visibility 0s linear 0.3s;
+            visibility: hidden;
+        }
+
+        .styles-dropdown-mobile.showUp5 {
+            background-color: rgba(0, 0, 0, 0.322);
+            visibility: visible;
+            transition: background-color 0.3s;
+        }
+
+        .styles-dropdown-mobile-inner {
+            margin-top: 15vh;
+            height: 85vh;
+            background-color: white;
+            border-radius: 20px 20px 0px 0px !important;
+            transform: translateY(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .styles-dropdown-mobile-inner.showUp4 {
+            transform: translateY(0%);
+            transition: transform 0.3s ease-in-out 0.3s;
+        }
+        .styles-dropdown-mobile-inner .sec21-mob {
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+        } .styles-dropdown-mobile-inner .sec21-mob .cancel-styles-btn {
+            background-color: rgba(255, 0, 0, 0.48);
+            border: none;
+            border-radius: 7px !important;
+            height: 50px;
+            width: 50px;
+            margin-left: 15px;
+        }
         /* ///////////////      SEATS DESKTOP       ///////////////////////// */
         .dropSeatsContain {
             position: relative;
@@ -532,16 +578,16 @@
                     </label>
 
                     <div class="optionsInputs d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
-                        <div class="dropSeatsContain d-flex justify-content-center p-2">
+                        <div class="dropSeatsContain d-flex flex-column flex-sm-row justify-content-center p-2">
                             <!-- Passengers Option -->
-                            <div class="passengers col-6 p-0" onclick="openSeatsManager(this); openMobileSeatsManager(this)">
+                            <div class="passengers col-12 col-sm-6 p-0 my-1 my-sm-0 mx-0 mx-sm-1" onclick="openSeatsManager(this); openMobileSeatsManager(this)">
                                 <div class="dropdown-input2 d-flex p-2" id="PdropdownInput">
                                     <i class="far fa-user p-1"></i>
                                     <span type="button" class="dropdown-button"><span class="passCount">1</span> Passenger(s)</span>
                                 </div>
                             </div>
                             <!-- Seat Option -->
-                            <div class="passengers col-6 p-0" onclick="openStyleManager(this); openMobileSeatsManager(this)">
+                            <div class="passengers col-12 col-sm-6 p-0 my-1 my-sm-0 mx-0 mx-sm-1" onclick="openStyleManager(this); openMobileStyleManager(this)">
                                 <div class="dropdown-input2 d-flex p-2" id="PdropdownInput">
                                     <i class="far fa-plane p-1"></i>
                                     <span type="button" class="dropdown-button">Economy</span>
@@ -582,9 +628,6 @@
                             <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
                             <input type="text" class="form-control datepicker" placeholder="Date" onclick="openMobileDatePick(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                         </div>
-                        <label for="">
-                            <input type="text">
-                        </label>
                     </div>
                 </div>
 
@@ -604,10 +647,10 @@
                                 </div>
                             </div>
                             <!-- Seat Option -->
-                            <div class="passengers col-6 p-0" onclick="openStyleManager(this); openMobileSeatsManager(this)">
+                            <div class="passengers col-6 p-0" onclick="openStyleManager(this); openMobileStyleManager(this)">
                                 <div class="dropdown-input2 d-flex p-2" id="PdropdownInput">
                                     <i class="far fa-plane p-1"></i>
-                                    <span type="button" class="dropdown-button">Economy</span>
+                                    <span type="button" class="dropdown-button seatStyle">Economy</span>
                                 </div>
                             </div>
                         </div>
@@ -678,7 +721,7 @@
                             </div>
                         </div>
                         <!-- Seat Option -->
-                        <div class="passengers col-6 p-0" onclick="openStyleManager(this); openMobileSeatsManager(this)">
+                        <div class="passengers col-6 p-0" onclick="openStyleManager(this); openMobileStyleManager(this)">
                             <div class="dropdown-input2 d-flex p-2" id="PdropdownInput">
                                 <i class="far fa-plane p-1"></i>
                                 <span type="button" class="dropdown-button">Economy</span>

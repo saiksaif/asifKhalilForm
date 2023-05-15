@@ -398,24 +398,6 @@ function openMobileSeatsManager(field) {
                   </div>
               </div>
             </div>
-            <h4 style="margin: 15px">Seats:</h4>
-            <div class="popupSeatOptions">
-              <div class="justify-content-around m-1" onclick="">
-                <div class="btn-group-vertical w-100" role="group" aria-label="Basic radio toggle button group">
-                  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                  <label class="btn btn-outline-dark" for="btnradio1">Economy</label>
-                
-                  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                  <label class="btn btn-outline-dark" for="btnradio2">Premium Economy</label>
-                
-                  <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                  <label class="btn btn-outline-dark" for="btnradio3">Business</label>
-                
-                  <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-                  <label class="btn btn-outline-dark" for="btnradio4">First</label>
-                </div>
-              </div>
-            </div>
         </div>
     </div>
   `;
@@ -470,6 +452,89 @@ function closeMobileSeats(closeBtn, event) {
     dateDropdownMobile.remove();
   }, 500);
 }
+
+// ////////////////    SEATS STYLE POPUP MOBILE   /////////////////////////////
+
+
+function openMobileStyleManager(field) {
+  if (window.innerWidth > window.innerHeight) {return;}
+
+  field.blur();
+  const mobileView3 = `
+    <div class="styles-dropdown-mobile">
+        <div class="styles-dropdown-mobile-inner">
+            <div class="sec21-mob">
+                <h4 class="p-2">Choose Seat Class:</h4>
+                <button class="cancel-styles-btn" type="none" onclick="closeMobileStyles(this, event)">X</button>
+            </div>
+            <div class="sec22-mob-3">
+              <div class="popupSeatOptions">
+                <div class="justify-content-around m-1" onclick="">
+                  <div class="btn-group-vertical w-100" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio" id="Economy" autocomplete="off" checked>
+                    <label class="btn btn-outline-dark" for="Economy">Economy</label>
+                  
+                    <input type="radio" class="btn-check" name="btnradio" id="Premium-Economy" autocomplete="off">
+                    <label class="btn btn-outline-dark" for="Premium-Economy">Premium Economy</label>
+                  
+                    <input type="radio" class="btn-check" name="btnradio" id="Business" autocomplete="off">
+                    <label class="btn btn-outline-dark" for="Business">Business</label>
+                  
+                    <input type="radio" class="btn-check" name="btnradio" id="First" autocomplete="off">
+                    <label class="btn btn-outline-dark" for="First">First</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+  `;
+  // romeCalInitializer()
+  
+  field.insertAdjacentHTML('afterend', mobileView3);
+  
+  setTimeout(() => {
+    document.querySelector('.styles-dropdown-mobile').classList.add('showUp5');
+  }, 0);
+  
+  setTimeout(() => {
+    document.querySelector('.styles-dropdown-mobile-inner').classList.add('showUp4');
+  }, 0);
+}
+
+// Function for the close button in date popup
+function closeMobileStyles(closeBtn, event) {
+  event.preventDefault();
+
+  // Get all the radio buttons with the name "btnradio"
+  const radioButtons = document.querySelectorAll('input[name="btnradio"]');
+
+  // Find the checked radio button
+  let checkedRadioButton;
+  for (const radioButton of radioButtons) {
+    if (radioButton.checked) {
+      checkedRadioButton = radioButton;
+      break;
+    }
+  }
+  closeBtn.parentNode.parentNode.parentNode.previousElementSibling.childNodes[1].childNodes[1].nextElementSibling.innerText = checkedRadioButton.id
+  console.log(closeBtn.parentNode.parentNode.parentNode.previousElementSibling.childNodes[1].childNodes[1].nextElementSibling.innerText)
+  
+  const dateDropdownMobile = closeBtn.closest(".styles-dropdown-mobile");
+  const inputs = document.querySelectorAll("input");
+  inputs.forEach((input) => {
+    input.blur();
+  });
+    
+  dateDropdownMobile.querySelector('.styles-dropdown-mobile-inner').classList.remove('showUp4');
+  
+  setTimeout(() => {
+    dateDropdownMobile.classList.remove('show');
+    dateDropdownMobile.remove();
+  }, 500);
+}
+
+
 
 // ////////////////    SEATS MANAGEMENT POPUP DESKTOP   /////////////////////////////
 
