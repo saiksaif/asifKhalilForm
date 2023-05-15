@@ -1,9 +1,8 @@
-
 // ////////////////////////////////////     SWITCHER
 
-const switch1 = document.querySelector("#oneWay")
-const switch2 = document.querySelector("#roundTrip")
-const switch3 = document.querySelector("#multiCity")
+const switch1 = document.querySelector("#oneWay");
+const switch2 = document.querySelector("#roundTrip");
+const switch3 = document.querySelector("#multiCity");
 document.querySelector("#form1").classList.remove("show");
 
 function switchingP() {
@@ -12,29 +11,29 @@ function switchingP() {
     document.querySelector("#form1").classList.remove("show");
     document.querySelector("#oneWayOptions").classList.remove("col-sm-6");
     document.querySelector("#oneWayOptions").classList.add("col-sm-12");
-    document.querySelector("#roundTripOption").classList.add("show")
+    document.querySelector("#roundTripOption").classList.add("show");
     document.querySelector("#form3").classList.add("show");
   } else if (switch2.checked) {
     // console.log("2")
     document.querySelector("#form1").classList.remove("show");
     document.querySelector("#oneWayOptions").classList.add("col-sm-6");
     document.querySelector("#oneWayOptions").classList.remove("col-sm-12");
-    document.querySelector("#roundTripOption").classList.remove("show")
+    document.querySelector("#roundTripOption").classList.remove("show");
     document.querySelector("#form3").classList.add("show");
   } else if (switch3.checked) {
     // console.log("3")
     document.querySelector("#form1").classList.add("show");
     document.querySelector("#oneWayOptions").classList.add("col-sm-6");
     document.querySelector("#oneWayOptions").classList.remove("col-sm-12");
-    document.querySelector("#roundTripOption").classList.add("show")
+    document.querySelector("#roundTripOption").classList.add("show");
     document.querySelector("#form3").classList.remove("show");
   }
 }
-switchingP()
+switchingP();
 // ////////////////////////////////////     EXPERIMENTAL
 
-const searchBars = document.querySelectorAll(".airport-search"); 
-searchBars.forEach(searchBar => {
+const searchBars = document.querySelectorAll(".airport-search");
+searchBars.forEach((searchBar) => {
   searchBar.addEventListener("input", handleSearch);
 });
 
@@ -42,7 +41,7 @@ searchBars.forEach(searchBar => {
 function handleSearch(event) {
   const searchTerm = event.target.value.toLowerCase();
   const matchingAirports = airports.filter(
-    airport =>
+    (airport) =>
       airport.code.toLowerCase().startsWith(searchTerm) ||
       airport.city.toLowerCase().startsWith(searchTerm) ||
       airport.country.toLowerCase().startsWith(searchTerm)
@@ -50,7 +49,7 @@ function handleSearch(event) {
   const dropdown = event.target.nextElementSibling;
   dropdown.innerHTML = "";
   if (matchingAirports.length > 0) {
-    matchingAirports.forEach(airport => {
+    matchingAirports.forEach((airport) => {
       const option = document.createElement("div");
       option.classList.add("airport-option");
       option.innerText = `${airport.code} - ${airport.city}, ${airport.country}`;
@@ -68,9 +67,9 @@ function handleSearch(event) {
 }
 
 // Close dropdowns when user clicks outside of them
-document.addEventListener("click", event => {
+document.addEventListener("click", (event) => {
   const dropdowns = document.querySelectorAll(".airport-dropdown");
-  dropdowns.forEach(dropdown => {
+  dropdowns.forEach((dropdown) => {
     if (!dropdown.contains(event.target)) {
       dropdown.innerHTML = "";
     }
@@ -82,7 +81,7 @@ function handleSearchM(event) {
   // console.warn(originalField)
   const searchTermM = event.target.value.toLowerCase();
   const matchingAirportsM = airports.filter(
-    airport =>
+    (airport) =>
       airport.code.toLowerCase().startsWith(searchTermM) ||
       airport.city.toLowerCase().startsWith(searchTermM) ||
       airport.country.toLowerCase().startsWith(searchTermM)
@@ -96,7 +95,7 @@ function handleSearchM(event) {
   if (matchingAirportsM.length > 0) {
     const listM = document.createElement("ul");
     listM.classList.add("airport-list-m");
-    matchingAirportsM.forEach(airport => {
+    matchingAirportsM.forEach((airport) => {
       const listItemM = document.createElement("li");
       // listItemM.parentElement.classList.add("airport-option-parent");
       listItemM.classList.add("airport-option-m");
@@ -106,7 +105,8 @@ function handleSearchM(event) {
         dropdownM.innerHTML = "";
         // console.warn(event.target.value)
         // console.warn(event.target.parentNode.parentNode.parentNode.previousElementSibling)
-        event.target.parentNode.parentNode.parentNode.previousElementSibling.value = event.target.value;
+        event.target.parentNode.parentNode.parentNode.previousElementSibling.value =
+          event.target.value;
         closeMobileFlightsFromOption(dropdownM);
       });
       listM.appendChild(listItemM);
@@ -128,19 +128,21 @@ function closeMobileFlightsFromOption(dropdown) {
   inputs.forEach((input) => {
     input.blur();
   });
-  
+
   // Remove classes to hide the inner container with slide down effect
-  airportDropdownMobile.parentNode.classList.remove('showUp');
-  
+  airportDropdownMobile.parentNode.classList.remove("showUp");
+
   // Remove class to hide the black background with fade out effect
   setTimeout(() => {
-    airportDropdownMobile.parentNode.classList.remove('show');
+    airportDropdownMobile.parentNode.classList.remove("show");
     airportDropdownMobile.remove();
   }, 500);
 }
 
 function openMobileSearch(field) {
-  if (window.innerWidth > window.innerHeight) {return;}
+  if (window.innerWidth > window.innerHeight) {
+    return;
+  }
 
   field.blur();
   const mobileView = `
@@ -157,14 +159,16 @@ function openMobileSearch(field) {
     </div>
   `;
   // console.log(mobileView)
-  field.insertAdjacentHTML('afterend', mobileView);
+  field.insertAdjacentHTML("afterend", mobileView);
   // Add class to show the black background with fade in effect
   setTimeout(() => {
-    document.querySelector('.airport-dropdown-mobile').classList.add('showUp1');
+    document.querySelector(".airport-dropdown-mobile").classList.add("showUp1");
   }, 0);
   // Add class to show the inner container with slide up effect
   setTimeout(() => {
-    document.querySelector('.airport-dropdown-mobile-inner').classList.add('showUp');
+    document
+      .querySelector(".airport-dropdown-mobile-inner")
+      .classList.add("showUp");
   }, 0);
   const inputField = document.querySelector(".airport-search-m");
   inputField.focus();
@@ -177,13 +181,15 @@ function closeMobileFlights(button, event) {
   inputs.forEach((input) => {
     input.blur();
   });
-  
+
   // Remove classes to hide the inner container with slide down effect
-  airportDropdownMobile.querySelector('.airport-dropdown-mobile-inner').classList.remove('showUp');
-  
+  airportDropdownMobile
+    .querySelector(".airport-dropdown-mobile-inner")
+    .classList.remove("showUp");
+
   // Remove class to hide the black background with fade out effect
   setTimeout(() => {
-    airportDropdownMobile.classList.remove('show');
+    airportDropdownMobile.classList.remove("show");
     airportDropdownMobile.remove();
   }, 500);
 }
@@ -203,7 +209,6 @@ function initAirportSearch(input) {
     dropdown.innerHTML = "";
   });
 }
-
 
 const addButton = document.querySelector("#addCity");
 addButton.addEventListener("click", () => {
@@ -234,7 +239,8 @@ addButton.addEventListener("click", () => {
     </div>
   `;
 
-  const [newFromInput, newToInput] = newCity.querySelectorAll(".airport-search");
+  const [newFromInput, newToInput] =
+    newCity.querySelectorAll(".airport-search");
   initAirportSearch(newFromInput);
   initAirportSearch(newToInput);
 
@@ -244,7 +250,11 @@ addButton.addEventListener("click", () => {
 
   // Initialize Pikaday for the new datepicker input field
   const newDatepicker = newCity.querySelector(".datepicker");
-  const newPicker = new Pikaday({ field: newDatepicker, format: 'D MMM YYYY', minDate: new Date() });
+  const newPicker = new Pikaday({
+    field: newDatepicker,
+    format: "D MMM YYYY",
+    minDate: new Date(),
+  });
 
   // Add a click event listener to the remove button
   const removeButton = newCity.querySelector(".removeCity");
@@ -253,12 +263,12 @@ addButton.addEventListener("click", () => {
   });
 });
 
-
-
 // /////////////////////////    DATE MANAGEMENT POPUP   /////////////////////////////
 
 function openMobileDatePick(field) {
-  if (window.innerWidth > window.innerHeight) {return;}
+  if (window.innerWidth > window.innerHeight) {
+    return;
+  }
 
   field.blur();
   const mobileView = `
@@ -278,16 +288,18 @@ function openMobileDatePick(field) {
         </div>
     </div>
   `;
-  romeCalInitializer()
-  
-  field.insertAdjacentHTML('afterend', mobileView);
-  
+  romeCalInitializer();
+
+  field.insertAdjacentHTML("afterend", mobileView);
+
   setTimeout(() => {
-    document.querySelector('.date-dropdown-mobile').classList.add('showUp3');
+    document.querySelector(".date-dropdown-mobile").classList.add("showUp3");
   }, 0);
-  
+
   setTimeout(() => {
-    document.querySelector('.date-dropdown-mobile-inner').classList.add('showUp2');
+    document
+      .querySelector(".date-dropdown-mobile-inner")
+      .classList.add("showUp2");
   }, 0);
 }
 
@@ -297,16 +309,20 @@ function mobCalChoosen(date) {
   inputs.forEach((input) => {
     input.blur();
   });
-  
-  const dateDropdownMobile = document.querySelector(".cancel-date-btn").closest(".date-dropdown-mobile");
+
+  const dateDropdownMobile = document
+    .querySelector(".cancel-date-btn")
+    .closest(".date-dropdown-mobile");
   // dateDropdownMobile.querySelector('.date-dropdown-mobile-inner').classList.remove('showUp2');
-  
+
   // setTimeout(() => {
   //   dateDropdownMobile.classList.remove('show');
   //   dateDropdownMobile.remove();
   // }, 500);
-  
-  const dateField = document.querySelector(".date-dropdown-mobile").previousElementSibling;
+
+  const dateField = document.querySelector(
+    ".date-dropdown-mobile"
+  ).previousElementSibling;
   dateField.value = date;
   dateField.blur();
 }
@@ -314,17 +330,19 @@ function mobCalChoosen(date) {
 // Function for the close button in date popup
 function closeMobileDate(closeBtn, event) {
   event.preventDefault();
-  
+
   const dateDropdownMobile = closeBtn.closest(".date-dropdown-mobile");
   const inputs = document.querySelectorAll("input");
   inputs.forEach((input) => {
     input.blur();
   });
-    
-  dateDropdownMobile.querySelector('.date-dropdown-mobile-inner').classList.remove('showUp2');
-  
+
+  dateDropdownMobile
+    .querySelector(".date-dropdown-mobile-inner")
+    .classList.remove("showUp2");
+
   setTimeout(() => {
-    dateDropdownMobile.classList.remove('show');
+    dateDropdownMobile.classList.remove("show");
     dateDropdownMobile.remove();
   }, 500);
 }
@@ -332,7 +350,9 @@ function closeMobileDate(closeBtn, event) {
 // /////////////////////////    SEATS MANAGEMENT POPUP   /////////////////////////////
 
 function openMobileSeatsManager(field) {
-  if (window.innerWidth > window.innerHeight) {return;}
+  if (window.innerWidth > window.innerHeight) {
+    return;
+  }
 
   field.blur();
   const mobileView = `
@@ -379,15 +399,17 @@ function openMobileSeatsManager(field) {
     </div>
   `;
   // romeCalInitializer()
-  
-  field.insertAdjacentHTML('afterend', mobileView);
-  
+
+  field.insertAdjacentHTML("afterend", mobileView);
+
   setTimeout(() => {
-    document.querySelector('.seats-dropdown-mobile').classList.add('showUp5');
+    document.querySelector(".seats-dropdown-mobile").classList.add("showUp5");
   }, 0);
-  
+
   setTimeout(() => {
-    document.querySelector('.seats-dropdown-mobile-inner').classList.add('showUp4');
+    document
+      .querySelector(".seats-dropdown-mobile-inner")
+      .classList.add("showUp4");
   }, 0);
 }
 
@@ -398,16 +420,22 @@ function mobSeatsChoosen(date) {
   inputs.forEach((input) => {
     input.blur();
   });
-  
-  const dateDropdownMobile = document.querySelector(".cancel-seats-btn").closest(".seats-dropdown-mobile");
-  dateDropdownMobile.querySelector('.seats-dropdown-mobile-inner').classList.remove('showUp4');
-  
+
+  const dateDropdownMobile = document
+    .querySelector(".cancel-seats-btn")
+    .closest(".seats-dropdown-mobile");
+  dateDropdownMobile
+    .querySelector(".seats-dropdown-mobile-inner")
+    .classList.remove("showUp4");
+
   setTimeout(() => {
-    dateDropdownMobile.classList.remove('show');
+    dateDropdownMobile.classList.remove("show");
     dateDropdownMobile.remove();
   }, 500);
-  
-  const dateField = document.querySelector(".seats-dropdown-mobile").previousElementSibling;
+
+  const dateField = document.querySelector(
+    ".seats-dropdown-mobile"
+  ).previousElementSibling;
   dateField.value = date;
   dateField.blur();
 }
@@ -415,26 +443,29 @@ function mobSeatsChoosen(date) {
 // Function for the close button in date popup
 function closeMobileSeats(closeBtn, event) {
   event.preventDefault();
-  
+
   const dateDropdownMobile = closeBtn.closest(".seats-dropdown-mobile");
   const inputs = document.querySelectorAll("input");
   inputs.forEach((input) => {
     input.blur();
   });
-    
-  dateDropdownMobile.querySelector('.seats-dropdown-mobile-inner').classList.remove('showUp4');
-  
+
+  dateDropdownMobile
+    .querySelector(".seats-dropdown-mobile-inner")
+    .classList.remove("showUp4");
+
   setTimeout(() => {
-    dateDropdownMobile.classList.remove('show');
+    dateDropdownMobile.classList.remove("show");
     dateDropdownMobile.remove();
   }, 500);
 }
 
 // ////////////////    SEATS STYLE POPUP MOBILE   /////////////////////////////
 
-
 function openMobileStyleManager(field) {
-  if (window.innerWidth > window.innerHeight) {return;}
+  if (window.innerWidth > window.innerHeight) {
+    return;
+  }
 
   field.blur();
   const mobileView3 = `
@@ -467,15 +498,17 @@ function openMobileStyleManager(field) {
     </div>
   `;
   // romeCalInitializer()
-  
-  field.insertAdjacentHTML('afterend', mobileView3);
-  
+
+  field.insertAdjacentHTML("afterend", mobileView3);
+
   setTimeout(() => {
-    document.querySelector('.styles-dropdown-mobile').classList.add('showUp5');
+    document.querySelector(".styles-dropdown-mobile").classList.add("showUp5");
   }, 0);
-  
+
   setTimeout(() => {
-    document.querySelector('.styles-dropdown-mobile-inner').classList.add('showUp4');
+    document
+      .querySelector(".styles-dropdown-mobile-inner")
+      .classList.add("showUp4");
   }, 0);
 }
 
@@ -494,29 +527,32 @@ function closeMobileStyles(closeBtn, event) {
       break;
     }
   }
-  closeBtn.parentNode.parentNode.parentNode.previousElementSibling.childNodes[1].childNodes[1].nextElementSibling.innerText = checkedRadioButton.id
+  closeBtn.parentNode.parentNode.parentNode.previousElementSibling.childNodes[1].childNodes[1].nextElementSibling.innerText =
+    checkedRadioButton.id;
   // console.log(closeBtn.parentNode.parentNode.parentNode.previousElementSibling.childNodes[1].childNodes[1].nextElementSibling.innerText)
-  
+
   const dateDropdownMobile = closeBtn.closest(".styles-dropdown-mobile");
   const inputs = document.querySelectorAll("input");
   inputs.forEach((input) => {
     input.blur();
   });
-    
-  dateDropdownMobile.querySelector('.styles-dropdown-mobile-inner').classList.remove('showUp4');
-  
+
+  dateDropdownMobile
+    .querySelector(".styles-dropdown-mobile-inner")
+    .classList.remove("showUp4");
+
   setTimeout(() => {
-    dateDropdownMobile.classList.remove('show');
+    dateDropdownMobile.classList.remove("show");
     dateDropdownMobile.remove();
   }, 500);
 }
 
-
-
 // ////////////////    SEATS MANAGEMENT POPUP DESKTOP   /////////////////////////////
 
 function openSeatsManager(field) {
-  if (window.innerWidth < window.innerHeight) {return;}
+  if (window.innerWidth < window.innerHeight) {
+    return;
+  }
 
   const seatsView = `
       <div class="seats-dropdown-desktop shadow" onmouseleave="mouseleaveSeats(this)">
@@ -553,8 +589,8 @@ function openSeatsManager(field) {
       </div>
   `;
   // romeCalInitializer()
-  
-  field.insertAdjacentHTML('afterend', seatsView);
+
+  field.insertAdjacentHTML("afterend", seatsView);
 
   // console.log("Opening on desktop");
 }
@@ -564,7 +600,7 @@ function openSeatsManager(field) {
 function passengerInc(event, max) {
   event.preventDefault();
   const currentP = event.target.nextElementSibling;
- 
+
   if (parseInt(currentP.innerHTML) < max) {
     currentP.innerText = parseInt(currentP.innerHTML) + 1;
   }
@@ -581,16 +617,18 @@ function passengerDec(event, min) {
   }
 }
 function mouseleaveSeats(element) {
-  let originalF = element.previousElementSibling.childNodes[1].childNodes[1].nextElementSibling.childNodes[0];
+  let originalF =
+    element.previousElementSibling.childNodes[1].childNodes[1]
+      .nextElementSibling.childNodes[0];
 
-  var passengerThisElements = element.getElementsByClassName('passengerThis');
+  var passengerThisElements = element.getElementsByClassName("passengerThis");
   var sum = 0;
   for (var i = 0; i < passengerThisElements.length; i++) {
     sum += parseInt(passengerThisElements[i].textContent);
   }
-  
+
   originalF.innerText = sum;
-  
+
   element.remove();
 }
 
@@ -605,7 +643,9 @@ function mouseleaveSeats(element) {
 // });
 
 function openStyleManager(field) {
-  if (window.innerWidth < window.innerHeight) {return;}
+  if (window.innerWidth < window.innerHeight) {
+    return;
+  }
 
   const stylesView = `
       <div class="style-dropdown-desktop shadow" onmouseleave="mouseleaveStyle(this)">
@@ -624,8 +664,8 @@ function openStyleManager(field) {
       </div>
   `;
   // romeCalInitializer()
-  
-  field.insertAdjacentHTML('afterend', stylesView);
+
+  field.insertAdjacentHTML("afterend", stylesView);
 }
 
 // ////////////////    SEATS Style MANAGEMENT   /////////////////////////////
@@ -634,9 +674,11 @@ function selectedSeatStyle(event) {
   event.preventDefault();
   const currentStyle = event.target.innerText;
 
-  let originalF2 = event.target.parentNode.previousElementSibling.childNodes[1].childNodes[1].nextElementSibling;
-  
-  originalF2.innerHTML = "" + currentStyle;  
+  let originalF2 =
+    event.target.parentNode.previousElementSibling.childNodes[1].childNodes[1]
+      .nextElementSibling;
+
+  originalF2.innerHTML = "" + currentStyle;
   // console.log(originalF2);
 
   mouseleaveStyle(event.target.parentNode);
