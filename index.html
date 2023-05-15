@@ -552,28 +552,24 @@
 
                     <!-- Airports Input Field -->
                     <div class="airportInputs d-flex flex-column flex-sm-column flex-md-row">
-                        <div class="input-group styledInputF">
+                        <div class="input-group styledInputF col-md-4 col-lg-4">
                             <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-map-marker-alt"></i></span>
                             <input type="text" class="form-control airport-search" placeholder="Flying from" onclick="openMobileSearch(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                             <div class="airport-dropdown"></div>
                         </div>
-                        <div class="input-group styledInputF">
+                        <div class="input-group styledInputF col-md-4 col-lg-4">
                             <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-map-marker-alt"></i></span>
                             <input type="text" class="form-control airport-search" placeholder="Flying to" onclick="openMobileSearch(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                             <div class="airport-dropdown"></div>
                         </div>
 
                         <!-- DATE Input Field -->
-                        <!-- <div class="input-group styledInputF" id="dateInputGroup">
-                            <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
-                            <input type="text" class="form-control datepicker datepickerPop" placeholder="Date" onclick="openMobileDatePick(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-                        </div>    -->
-                        <div class="dateInputs d-flex mx-0 p-0 justify-content-betweem">
-                            <div class="input-group styledInputF mx-0">
+                        <div class="dateInputs d-flex mx-0 p-0 justify-content-betweem flex-column flex-sm-row col-lg-4 col-md-4">
+                            <div class="input-group styledInputF mx-0 col-12 col-sm-6" id="oneWayOptions">
                                 <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
                                 <input type="text" class="form-control datepicker" placeholder="Date" onclick="openMobileDatePick(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                             </div>                      
-                            <div class="input-group styledInputF mx-0 show" id="roundTripOption">
+                            <div class="input-group styledInputF mx-0 show col-12 col-sm-6" id="roundTripOption">
                                 <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
                                 <input type="text" class="form-control datepicker" placeholder="Date" onclick="openMobileDatePick(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                             </div>

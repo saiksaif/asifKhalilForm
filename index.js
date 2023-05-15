@@ -10,16 +10,22 @@ function switchingP() {
   if (switch1.checked) {
     // console.log("1")
     document.querySelector("#form1").classList.remove("show");
+    document.querySelector("#oneWayOptions").classList.remove("col-sm-6");
+    document.querySelector("#oneWayOptions").classList.add("col-sm-12");
     document.querySelector("#roundTripOption").classList.add("show")
     document.querySelector("#form3").classList.add("show");
   } else if (switch2.checked) {
     // console.log("2")
     document.querySelector("#form1").classList.remove("show");
+    document.querySelector("#oneWayOptions").classList.add("col-sm-6");
+    document.querySelector("#oneWayOptions").classList.remove("col-sm-12");
     document.querySelector("#roundTripOption").classList.remove("show")
     document.querySelector("#form3").classList.add("show");
   } else if (switch3.checked) {
     // console.log("3")
     document.querySelector("#form1").classList.add("show");
+    document.querySelector("#oneWayOptions").classList.add("col-sm-6");
+    document.querySelector("#oneWayOptions").classList.remove("col-sm-12");
     document.querySelector("#roundTripOption").classList.add("show")
     document.querySelector("#form3").classList.remove("show");
   }
@@ -263,7 +269,7 @@ function openMobileDatePick(field) {
                 <button class="cancel-date-btn" type="none" onclick="closeMobileDate(this, event)">X</button>
             </div>
             <div class="sec22-mob">
-              <form action="mobCalChoosen()" class="row justify-content-around">
+              <form action="" class="row justify-content-around">
                 <div class="col-md-12">
                   <div id="inline_cal" style="width:fit-content; margin: 0 auto"></div>
                 </div>
@@ -293,12 +299,12 @@ function mobCalChoosen(date) {
   });
   
   const dateDropdownMobile = document.querySelector(".cancel-date-btn").closest(".date-dropdown-mobile");
-  dateDropdownMobile.querySelector('.date-dropdown-mobile-inner').classList.remove('showUp2');
+  // dateDropdownMobile.querySelector('.date-dropdown-mobile-inner').classList.remove('showUp2');
   
-  setTimeout(() => {
-    dateDropdownMobile.classList.remove('show');
-    dateDropdownMobile.remove();
-  }, 500);
+  // setTimeout(() => {
+  //   dateDropdownMobile.classList.remove('show');
+  //   dateDropdownMobile.remove();
+  // }, 500);
   
   const dateField = document.querySelector(".date-dropdown-mobile").previousElementSibling;
   dateField.value = date;
