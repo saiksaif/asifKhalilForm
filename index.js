@@ -10,17 +10,17 @@ function switchingP() {
   if (switch1.checked) {
     // console.log("1")
     document.querySelector("#form1").classList.remove("show");
-    document.querySelector("#form2").classList.add("show");
+    document.querySelector("#roundTripOption").classList.add("show")
     document.querySelector("#form3").classList.add("show");
   } else if (switch2.checked) {
     // console.log("2")
-    document.querySelector("#form1").classList.add("show");
-    document.querySelector("#form2").classList.remove("show");
+    document.querySelector("#form1").classList.remove("show");
+    document.querySelector("#roundTripOption").classList.remove("show")
     document.querySelector("#form3").classList.add("show");
   } else if (switch3.checked) {
     // console.log("3")
     document.querySelector("#form1").classList.add("show");
-    document.querySelector("#form2").classList.add("show");
+    document.querySelector("#roundTripOption").classList.add("show")
     document.querySelector("#form3").classList.remove("show");
   }
 }
@@ -70,35 +70,6 @@ document.addEventListener("click", event => {
     }
   });
 });
-
-// ////////////////////////////////////     SECTION 1 - One Way
-
-// const dropdownInput2 = document.querySelector('#PdropdownInput');
-// const dropdownButton2 = document.querySelector('#PdropdownButton');
-// const dropdownMenu2 = document.querySelector('.Pdropdown-menu');
-
-// dropdownInput2.addEventListener('click', () => {
-//     dropdownMenu2.classList.toggle('show');
-// });
-
-// dropdownMenu2.addEventListener('mouseleave', () => {
-//     dropdownMenu2.classList.toggle('show');
-// });
-
-// function getTotalPassengers() {
-//     const adultsN = document.querySelector('#adultC');
-//     const childsN = document.querySelector('#childC');
-//     const infantsN = document.querySelector('#infantC');
-
-//     var totalPass = parseInt(adultsN.value) + parseInt(childsN.value) + parseInt(infantsN.value);
-
-//     console.log(totalPass);
-//     if (totalPass > 1) {
-//         dropdownButton2.innerHTML = totalPass + " Passengers";
-//     } else {
-//         dropdownButton2.innerHTML = "1 Passenger";
-//     }
-// }
 
 // ////////////////////////////////////     SECTION - Mobile Flight Search
 function handleSearchM(event) {

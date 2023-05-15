@@ -564,10 +564,20 @@
                         </div>
 
                         <!-- DATE Input Field -->
-                        <div class="input-group styledInputF" id="dateInputGroup">
+                        <!-- <div class="input-group styledInputF" id="dateInputGroup">
                             <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
                             <input type="text" class="form-control datepicker datepickerPop" placeholder="Date" onclick="openMobileDatePick(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-                        </div>    
+                        </div>    -->
+                        <div class="dateInputs d-flex mx-0 p-0 justify-content-betweem">
+                            <div class="input-group styledInputF mx-0">
+                                <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
+                                <input type="text" class="form-control datepicker" placeholder="Date" onclick="openMobileDatePick(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                            </div>                      
+                            <div class="input-group styledInputF mx-0 show" id="roundTripOption">
+                                <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
+                                <input type="text" class="form-control datepicker" placeholder="Date" onclick="openMobileDatePick(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                            </div>
+                        </div> 
                     </div>        
                 </div>
 
@@ -602,9 +612,9 @@
             </form>
 
             <!-- /////////////////////////////////      FORM 2      //////////////////////////////////// -->
-            <form id="form2" class="bodyForm show" action="#">
+            <!-- <form id="form2" class="bodyForm show" action="#">
                 <div class="pt21 d-flex flex-column flex-sm-column flex-md-row justify-content-betweem">
-                    <!-- Airports Input Field -->
+
                     <div class="airportInputs d-flex mx-0 p-0 col-12 col-sm-12 col-md-7 justify-content-betweem">
                         <div class="input-group styledInputF mx-0">
                             <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-map-marker-alt"></i></span>
@@ -618,7 +628,7 @@
                         </div>
                     </div>
 
-                    <!-- Date Input Fields -->
+
                     <div class="dateInputs d-flex mx-0 p-0 justify-content-betweem">
                         <div class="input-group styledInputF mx-0">
                             <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
@@ -639,14 +649,14 @@
 
                     <div class="optionsInputs d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
                         <div class="dropSeatsContain d-flex justify-content-center p-2">
-                            <!-- Passengers Option -->
+
                             <div class="passengers col-6 p-0" onclick="openSeatsManager(this); openMobileSeatsManager(this)">
                                 <div class="dropdown-input2 d-flex p-2" id="PdropdownInput">
                                     <i class="far fa-user p-1"></i>
                                     <span type="button" class="dropdown-button"><span class="passCount">1</span> Passenger(s)</span>
                                 </div>
                             </div>
-                            <!-- Seat Option -->
+
                             <div class="passengers col-6 p-0" onclick="openStyleManager(this); openMobileStyleManager(this)">
                                 <div class="dropdown-input2 d-flex p-2" id="PdropdownInput">
                                     <i class="far fa-plane p-1"></i>
@@ -659,7 +669,7 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            </form> -->
 
             <!-- /////////////////////////////////      FORM 3      //////////////////////////////////// -->
             <form id="form3" class="bodyForm flex-column flex-sm-column flex-md-row show" action="#">
@@ -744,18 +754,8 @@
             for (let i = 0; i < checkboxes.length; i++) {
                 if (checkboxes[i] !== checkedBox) {
                     checkboxes[i].checked = false;
-                    // if (checkboxes[i].id == "roundTrip") {
-                    //     checkboxChange()
-                    // }
-                    // if (checkboxes[i].id == "multiCity") {
-                        // showOthers()
-                    // }
                 } else if (!checkedBox.checked) {
                     checkedBox.checked = true;
-                    
-                    // if (checkedBox.id == "multiCity") {
-                    //     hideOthers()
-                    // }
                 }
             }
         }
