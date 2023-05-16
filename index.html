@@ -551,13 +551,16 @@
                 <div class="pt11">
 
                     <!-- Airports Input Field -->
+                    <!-- <div class="airportInputs d-flex flex-column flex-sm-column flex-md-row">
+                        <div class="input-group styledInputF col-md-4 col-lg-4"> -->
                     <div class="airportInputs d-flex flex-column flex-sm-column flex-md-row">
-                        <div class="input-group styledInputF col-md-4 col-lg-4">
+                        <div class="input-group styledInputF">
                             <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-map-marker-alt"></i></span>
                             <input type="text" class="form-control airport-search" placeholder="Flying from" onclick="openMobileSearch(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                             <div class="airport-dropdown"></div>
                         </div>
-                        <div class="input-group styledInputF col-md-4 col-lg-4">
+                        <!-- <div class="input-group styledInputF col-md-4 col-lg-4"> -->
+                        <div class="input-group styledInputF">
                             <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-map-marker-alt"></i></span>
                             <input type="text" class="form-control airport-search" placeholder="Flying to" onclick="openMobileSearch(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                             <div class="airport-dropdown"></div>
@@ -565,11 +568,11 @@
 
                         <!-- DATE Input Field -->
                         <div class="dateInputs d-flex mx-0 p-0 justify-content-betweem flex-column flex-sm-row col-lg-4 col-md-4">
-                            <div class="input-group styledInputF mx-0 col-12 col-sm-6" id="oneWayOptions">
+                            <div class="input-group styledInputF col-12 col-sm-6" id="oneWayOptions" style="padding: 7px;">
                                 <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
                                 <input type="text" class="form-control datepicker" placeholder="Date" onclick="openMobileDatePick(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                             </div>                      
-                            <div class="input-group styledInputF mx-0 show col-12 col-sm-6" id="roundTripOption">
+                            <div class="input-group styledInputF show col-12 col-sm-6" id="roundTripOption" style="padding: 7px;">
                                 <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
                                 <input type="text" class="form-control datepicker" placeholder="Date" onclick="openMobileDatePick(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                             </div>
@@ -606,66 +609,6 @@
                     </div>
                 </div>
             </form>
-
-            <!-- /////////////////////////////////      FORM 2      //////////////////////////////////// -->
-            <!-- <form id="form2" class="bodyForm show" action="#">
-                <div class="pt21 d-flex flex-column flex-sm-column flex-md-row justify-content-betweem">
-
-                    <div class="airportInputs d-flex mx-0 p-0 col-12 col-sm-12 col-md-7 justify-content-betweem">
-                        <div class="input-group styledInputF mx-0">
-                            <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-map-marker-alt"></i></span>
-                            <input type="text" class="form-control airport-search" placeholder="Flying from" onclick="openMobileSearch(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-                            <div class="airport-dropdown"></div>
-                        </div>
-                        <div class="input-group styledInputF mx-0">
-                            <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-map-marker-alt"></i></span>
-                            <input type="text" class="form-control airport-search" placeholder="Flying to" onclick="openMobileSearch(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-                            <div class="airport-dropdown"></div>
-                        </div>
-                    </div>
-
-
-                    <div class="dateInputs d-flex mx-0 p-0 justify-content-betweem">
-                        <div class="input-group styledInputF mx-0">
-                            <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
-                            <input type="text" class="form-control datepicker" placeholder="Date" onclick="openMobileDatePick(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-                        </div>                      
-                        <div class="input-group styledInputF mx-0">
-                            <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
-                            <input type="text" class="form-control datepicker" placeholder="Date" onclick="openMobileDatePick(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pt12 d-flex justify-content-between flex-column flex-sm-column flex-md-row">
-                    <label class="directFl" for="direct">
-                        <input type="checkbox" name="direct" id="">
-                        Direct Flight
-                    </label>
-
-                    <div class="optionsInputs d-flex flex-column flex-sm-column flex-md-row flex-lg-row">
-                        <div class="dropSeatsContain d-flex justify-content-center p-2">
-
-                            <div class="passengers col-6 p-0" onclick="openSeatsManager(this); openMobileSeatsManager(this)">
-                                <div class="dropdown-input2 d-flex p-2" id="PdropdownInput">
-                                    <i class="far fa-user p-1"></i>
-                                    <span type="button" class="dropdown-button"><span class="passCount">1</span> Passenger(s)</span>
-                                </div>
-                            </div>
-
-                            <div class="passengers col-6 p-0" onclick="openStyleManager(this); openMobileStyleManager(this)">
-                                <div class="dropdown-input2 d-flex p-2" id="PdropdownInput">
-                                    <i class="far fa-plane p-1"></i>
-                                    <span type="button" class="dropdown-button seatStyle">Economy</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <button class="submissionBtn" type="submit">SEARCH</button>
-                        </div>
-                    </div>
-                </div>
-            </form> -->
 
             <!-- /////////////////////////////////      FORM 3      //////////////////////////////////// -->
             <form id="form3" class="bodyForm flex-column flex-sm-column flex-md-row show" action="#">
