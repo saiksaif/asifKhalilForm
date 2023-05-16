@@ -32,6 +32,22 @@ function switchingP() {
 switchingP();
 // ////////////////////////////////////     EXPERIMENTAL
 
+function airPortCrossSwitch(event) {
+  event.preventDefault();
+  let field1 = document.querySelector("#airport1").value;
+  let field2 = document.querySelector("#airport2").value;
+  let replacer;
+
+  replacer = field1;
+  field1 = field2;
+  field2 = replacer;
+
+  document.querySelector("#airport1").value = field1;
+  document.querySelector("#airport2").value = field2;
+}
+
+
+
 const searchBars = document.querySelectorAll(".airport-search");
 searchBars.forEach((searchBar) => {
   searchBar.addEventListener("input", handleSearch);
