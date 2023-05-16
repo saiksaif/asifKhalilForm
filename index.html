@@ -611,11 +611,11 @@
                         <div class="dateInputs d-flex mx-0 p-0 justify-content-betweem flex-column flex-sm-row col-lg-4 col-md-4">
                             <div class="input-group styledInputF col-12 col-sm-6" id="oneWayOptions" style="padding: 7px;">
                                 <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
-                                <input type="text" class="form-control datepicker" placeholder="Date" onclick="openMobileDatePick(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                                <input id="datePickerID" type="text" class="form-control datepicker" placeholder="Date" onclick="openMobileDatePick(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                             </div>                      
                             <div class="input-group styledInputF show col-12 col-sm-6" id="roundTripOption" style="padding: 7px;">
                                 <span class="input-group-text" id="inputGroup-sizing-default"><i class="far fa-calendar"></i></span>
-                                <input type="text" class="form-control datepicker" placeholder="Date" onclick="openMobileDatePick(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+                                <input id="datePickerID" type="text" class="form-control datepicker" placeholder="Date" onclick="openMobileDatePick(this)" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
                             </div>
                         </div> 
                     </div>        
@@ -637,7 +637,7 @@
                                 </div>
                             </div>
                             <!-- Seat Option -->
-                            <div class="passengers col-12 col-sm-6 p-0 my-1 my-sm-0 mx-0 mx-sm-1" onclick="openStyleManager(this); openMobileStyleManager(this)">
+                            <div style="min-width: 140px;" class="passengers col-12 col-sm-6 p-0 my-1 my-sm-0 mx-0 mx-sm-1" onclick="openStyleManager(this); openMobileStyleManager(this)">
                                 <div class="dropdown-input2 d-flex p-2" id="PdropdownInput">
                                     <i class="far fa-plane p-1"></i>
                                     <span type="button" class="dropdown-button">Economy</span>
@@ -740,11 +740,6 @@
             }
         }
     </script>
-
-    <!-- PAGE SWITCHER -->
-    <script>
-
-    </script>
     
     <!-- Date Picker -->
     <script>
@@ -754,19 +749,41 @@
         const day = today.getDate().toString().padStart(2, '0');
         const month = (today.getMonth() + 1).toString().padStart(2, '0');
         const year = today.getFullYear().toString();
-        const todayFormatted = `${day}-${month}-${year}`;
+        const todayFormatted = `${day} ${getMonthName(today.getMonth())}, ${year}`;
+
+        function getMonthName(monthIndex) {
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            return months[monthIndex];
+        }
 
         dateInputs.forEach((dateInput) => {
             if (window.innerWidth > window.innerHeight) {
-                // console.log("Check")
                 dateInput.placeholder = todayFormatted;
                 pickers.push(new Pikaday({
-                    field: dateInput,
-                    format: 'D MMM YYYY',
-                    minDate: new Date(),
+                field: dateInput,
+                format: 'D MMM, YYYY',
+                toString(date, format) {
+                    const day = date.getDate();
+                    const month = getMonthName(date.getMonth());
+                    const year = date.getFullYear();
+                    return `${day} ${month}, ${year}`;
+                },
+                parse(dateString, format) {
+                    const parts = dateString.split(' ');
+                    const day = parseInt(parts[0], 10);
+                    const month = getMonthIndex(parts[1]);
+                    const year = parseInt(parts[2], 10);
+                    return new Date(year, month, day);
+                },
+                minDate: today,
                 }));
             }
         });
+
+        function getMonthIndex(monthName) {
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            return months.findIndex((month) => month === monthName);
+        }
     </script>
 
     <script src="./index.js"></script>
@@ -923,6 +940,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/popper.min.js"></script>
         <script src="https://cdn.usebootstrap.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <script src="https://cdn.tutorialjinni.com/rome/3.0.2/rome.js"></script>
+
         <script>
 
             function romeCalInitializer() {
